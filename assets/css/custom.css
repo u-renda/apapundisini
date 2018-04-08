@@ -1,0 +1,29 @@
+/* Add here all your CSS customizations */
+html #header .header-top.header-top-third {
+    background: #484a51;
+    border-top-color: #3c3e44;
+}
+
+.header-title {
+	font-size: 25px;
+	margin-bottom: 22px;
+	display: block;
+	color: rgb(62,64,149);
+}
+
+.v-align-bottom {
+	vertical-align: bottom !important;
+}
+
+.masonry .masonry-item {
+    width: 33.33%;
+}
+
+.product-image {
+	max-height: 358px;
+	width: 100%;
+}
+
+.w-700 {
+	width: 700px;
+}
