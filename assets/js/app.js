@@ -313,9 +313,20 @@ $(function () {
                 width: 70
             },
             {
-                field: "Tipe",
+                field: "Kategori",
                 sortable: false,
                 width: 100
+            },
+            {
+                field: "Harga",
+				title: "Harga (Rp)",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Stok",
+                sortable: false,
+                width: 50
             },
             {
                 field: "Keterangan",

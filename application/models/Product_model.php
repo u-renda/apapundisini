@@ -31,9 +31,18 @@ class Product_model extends CI_Model {
         {
             $where += array($this->table_id => $param['id_product']);
         }
+        if (isset($param['slug']) == TRUE)
+        {
+            $where += array($this->table.'.slug' => $param['slug']);
+        }
         
-        $this->db->select($this->table_id.', photo, created_date, updated_date');
+        $this->db->select($this->table_id.', '.$this->table.'.id_product_category,
+						  '.$this->table.'.name, '.$this->table.'.slug, price, photo, stock,
+						  description, '.$this->table.'.created_date, '.$this->table.'.updated_date,
+						  product_category.name AS product_category_name,
+						  product_category.slug AS product_category_slug');
         $this->db->from($this->table);
+        $this->db->join('product_category', $this->table.'.id_product_category = product_category.id_product_category');
         $this->db->where($where);
         $query = $this->db->get();
         return $query;
@@ -42,8 +51,13 @@ class Product_model extends CI_Model {
     function lists($param)
     {
         $where = array();
-        
-        $this->db->select($this->table_id.', photo, created_date, updated_date');
+        if (isset($param['id_product_category']) == TRUE)
+        {
+            $where += array('id_product_category' => $param['id_product_category']);
+        }
+		
+        $this->db->select($this->table_id.', id_product_category, name, slug, price, photo, stock,
+						  description, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

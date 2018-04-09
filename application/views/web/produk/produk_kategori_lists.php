@@ -12,69 +12,29 @@
 		<div class="row">
 
 			<ul class="products product-thumb-info-list" data-plugin-masonry>
+				<?php foreach ($product as $row) { ?>
 				<li class="col-md-3 col-sm-6 col-xs-12 product">
 					<span class="product-thumb-info">
-						<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
+						<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'.$row->slug; ?>">
 							<span class="product-thumb-info-image">
 								<span class="product-thumb-info-act">
 									<span class="product-thumb-info-act-left"><em>View</em></span>
 									<span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Details</em></span>
 								</span>
-								<img alt="" class="img-responsive" src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>">
+								<img alt="<?php echo ucwords($row->name); ?>" class="img-responsive" src="<?php echo $row->photo; ?>">
 							</span>
 						</a>
 						<span class="product-thumb-info-content">
-							<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
-								<h4>Golf Bag</h4>
+							<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'.$row->slug; ?>">
+								<h4><?php echo $row->name; ?></h4>
 								<span class="price">
-									<span class="amount">$72</span>
+									<span class="amount"><?php echo 'Rp '.number_format($row->price,0,',','.'); ?></span>
 								</span>
 							</a>
 						</span>
 					</span>
 				</li>
-				<li class="col-md-3 col-sm-6 col-xs-12 product">
-					<span class="product-thumb-info">
-						<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
-							<span class="product-thumb-info-image">
-								<span class="product-thumb-info-act">
-									<span class="product-thumb-info-act-left"><em>View</em></span>
-									<span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Details</em></span>
-								</span>
-								<img alt="" class="img-responsive" src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>">
-							</span>
-						</a>
-						<span class="product-thumb-info-content">
-							<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
-								<h4>Golf Bag</h4>
-								<span class="price">
-									<span class="amount">$72</span>
-								</span>
-							</a>
-						</span>
-					</span>
-				</li>
-				<li class="col-md-3 col-sm-6 col-xs-12 product">
-					<span class="product-thumb-info">
-						<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
-							<span class="product-thumb-info-image">
-								<span class="product-thumb-info-act">
-									<span class="product-thumb-info-act-left"><em>View</em></span>
-									<span class="product-thumb-info-act-right"><em><i class="fa fa-plus"></i> Details</em></span>
-								</span>
-								<img alt="" class="img-responsive" src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>">
-							</span>
-						</a>
-						<span class="product-thumb-info-content">
-							<a href="<?php echo base_url('produk').'/'.$product_category->slug.'/'; ?>">
-								<h4>Golf Bag</h4>
-								<span class="price">
-									<span class="amount">$72</span>
-								</span>
-							</a>
-						</span>
-					</span>
-				</li>
+				<?php } ?>
 			</ul>
 
 		</div>

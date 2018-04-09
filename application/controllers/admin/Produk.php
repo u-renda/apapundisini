@@ -20,7 +20,7 @@ class Produk extends CI_Controller {
 		if ($_FILES["produk_url"]["error"] == 0)
 		{
 			$this->load->helper('my');
-			$photo = upload_image($_FILES["produk_url"], 'produk');
+			$photo = upload_image($_FILES["produk_url"], 'product');
 			
 			if (is_array($photo) == FALSE)
 			{
@@ -50,8 +50,10 @@ class Produk extends CI_Controller {
 			$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 			$this->form_validation->set_message('required', '%s harus diisi');
 			$this->form_validation->set_message('numeric', '%s harus berisi angka');
-			$this->form_validation->set_rules('id_product_type_detail', 'tipe produk', 'required');
+			$this->form_validation->set_rules('id_product_category', 'kategori produk', 'required');
 			$this->form_validation->set_rules('name', 'nama', 'required');
+			$this->form_validation->set_rules('price', 'harga', 'required|numeric');
+			$this->form_validation->set_rules('stock', 'stok', 'required|numeric');
 			$this->form_validation->set_rules('description', 'keterangan', 'required');
 			$this->form_validation->set_rules('produk_url', 'foto', 'callback_check_media');
 			
@@ -71,11 +73,13 @@ class Produk extends CI_Controller {
 				}
 				
 				$param = array();
-				$param['id_product_type_detail'] = $this->input->post('id_product_type_detail');
+				$param['id_product_category'] = $this->input->post('id_product_category');
 				$param['name'] = $this->input->post('name');
 				$param['slug'] = $slug;
+				$param['price'] = $this->input->post('price');
+				$param['stock'] = $this->input->post('stock');
 				$param['description'] = $this->input->post('description');
-				$param['url'] = $this->processMedia;
+				$param['photo'] = $this->processMedia;
 				$param['created_date'] = date('Y-m-d H:i:s');
 				$param['updated_date'] = date('Y-m-d H:i:s');
 				$query = $this->product_model->create($param);
@@ -91,15 +95,15 @@ class Produk extends CI_Controller {
 			}
 		}
 		
-		$query3 = $this->product_type_model->lists(array('limit' => 20, 'offset' => 0, 'order' => 'number', 'sort' => 'asc'));
+		$query3 = $this->product_category_model->lists(array('limit' => 20, 'offset' => 0, 'order' => 'name', 'sort' => 'asc'));
 		
 		if ($query3->num_rows() > 0)
 		{
-			$data['product_type_lists'] = $query3->result();
+			$data['product_category_lists'] = $query3->result();
 		}
 		
 		$data['view_content'] = 'admin/produk/produk_create';
-		$this->display_view('admin/templates/frame', $data);
+		$this->load->view('admin/templates/frame', $data);
 	}
 
     function produk_delete()
@@ -156,17 +160,19 @@ class Produk extends CI_Controller {
         {
             $action = '<a title="Edit" href="'.$this->config->item('link_admin_produk_update').'?id='.$row->id_product.'"><i class="fa fa-pencil h4"></i></a>&nbsp;
                         <a title="Delete" id="'.$row->id_product.'" class="delete '.$row->id_product.'-delete" href="#"><i class="fa fa-times h4 text-danger"></i></a>';
-			$foto = '<img src="'.$row->url.'" alt="'.$row->name.'" width="50%">';
+			$foto = '<img src="'.$row->photo.'" alt="'.$row->name.'" width="50%">';
 			
-			$query2 = $this->product_type_detail_model->info(array('id_product_type_detail' => $row->id_product_type_detail));
+			$query2 = $this->product_category_model->info(array('id_product_category' => $row->id_product_category));
 			
 			if ($query2->num_rows() > 0)
 			{
 				$entry = array(
 					'No' => $i,
 					'Nama' => $row->name,
-					'Tipe' => strtoupper($query2->row()->product_type_name.' - '.$query2->row()->name),
+					'Kategori' => ucwords($query2->row()->name),
 					'Keterangan' => $row->description,
+					'Harga' => number_format($row->price,0,',','.'),
+					'Stok' => number_format($row->stock,0,',','.'),
 					'Foto' => $foto,
 					'Aksi' => $action
 				);
@@ -186,7 +192,7 @@ class Produk extends CI_Controller {
 		$data['type'] = $this->input->get('type');
 		$data['msg'] = $this->input->get('msg');
 		$data['view_content'] = 'admin/produk/produk_lists';
-		$this->display_view('admin/templates/frame', $data);
+		$this->load->view('admin/templates/frame', $data);
 	}
 	
 	function produk_kategori_create()

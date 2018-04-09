@@ -542,6 +542,7 @@ $config['title'] = 'Apapun Disini';
 /* WEB */
 $config['link_login'] = $config['base_url'].'login';
 $config['link_register'] = $config['base_url'].'login/register';
+$config['link_cart'] = $config['base_url'].'cart';
 
 /* ADMIN */
 $config['link_admin_home'] = $config['base_url'].'admin/home'; // index (gak perlu routes)

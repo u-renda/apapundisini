@@ -16,4 +16,12 @@ class Login extends MY_Controller {
 		$data['view_content'] = 'web/login/index';
 		$this->display_view('web/templates/frame', $data);
 	}
+
+    function register()
+	{
+		$data = array();
+		
+		$data['view_content'] = 'web/login/regis';
+		$this->display_view('web/templates/frame', $data);
+	}
 }

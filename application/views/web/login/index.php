@@ -56,7 +56,7 @@
 											<div class="form-group">
 												<div class="col-md-12">
 													<label>E-mail Address</label>
-													<input type="text" value="" class="form-control input-lg" name="email">
+													<input type="email" value="" class="form-control input-lg" name="email" required>
 												</div>
 											</div>
 										</div>
@@ -64,11 +64,11 @@
 											<div class="form-group">
 												<div class="col-md-6">
 													<label>Password</label>
-													<input type="password" value="" class="form-control input-lg" name="password">
+													<input type="password" value="" class="form-control input-lg" name="password" required>
 												</div>
 												<div class="col-md-6">
 													<label>Ulangi Password</label>
-													<input type="password" value="" class="form-control input-lg" name="re_password">
+													<input type="password" value="" class="form-control input-lg" name="re_password" required>
 												</div>
 											</div>
 										</div>

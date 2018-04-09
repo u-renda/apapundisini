@@ -25,15 +25,15 @@
                 <form action="<?php echo $this->config->item('link_admin_produk_create'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Tipe Produk:</label>
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Kategori Produk:</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="id_product_type" id="id_product_type">
+                                <select class="form-control" name="id_product_category" id="id_product_category">
                                     <option value="">-- Pilih Salah Satu --</option>
-                                    <?php foreach ($product_type_lists as $key => $val) {
-										echo '<option id="'.$val->id_product_type.'" value="'.$val->id_product_type.'"'.set_select('id_product_type', $val->id_product_type).'>'.$val->name.'</option>';
+                                    <?php foreach ($product_category_lists as $key => $val) {
+										echo '<option id="'.$val->id_product_category.'" value="'.$val->id_product_category.'"'.set_select('id_product_type', $val->id_product_category).'>'.ucwords($val->name).'</option>';
                                     } ?>
                                 </select>
-                                <?php echo form_error('id_product_type'); ?>
+                                <?php echo form_error('id_product_category'); ?>
                             </div>
 							<div class="col-sm-10 col-sm-offset-2 mt-sm">
 								<div id="id_product_type_detail"></div>
@@ -45,6 +45,20 @@
                             <div class="col-sm-10">
                                 <input type="text" name="name" class="form-control" value="<?php echo set_value('name'); ?>">
                                 <?php echo form_error('name'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Harga:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="price" class="form-control" value="<?php echo set_value('price'); ?>">
+                                <?php echo form_error('price'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Stok:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="stock" class="form-control" value="<?php echo set_value('stock'); ?>">
+                                <?php echo form_error('stock'); ?>
                             </div>
                         </div>
                         <div class="form-group">

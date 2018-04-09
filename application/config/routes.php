@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 /* MAIN */
 $route['index'] = 'beranda/index';
 $route['produk/(:any)'] = 'produk/index/$1';
+$route['produk/(:any)/(:any)'] = 'produk/index/$1';
 
 /* ADMIN */
 $route['admin'] = 'admin/login/index';
