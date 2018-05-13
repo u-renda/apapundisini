@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/owl.carousel/assets').'/owl.carousel.min.css'; ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/owl.carousel/assets').'/owl.theme.default.min.css'; ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/magnific-popup').'/magnific-popup.css'; ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/vendor/pnotify').'/pnotify.custom.css'; ?>">
 		
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css').'/theme.css'; ?>">

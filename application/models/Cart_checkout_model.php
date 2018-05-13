@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Member_model extends CI_Model {
+class Cart_checkout_model extends CI_Model {
 
-    var $table = 'member';
-	var $table_id = 'id_member';
+    var $table = 'cart_checkout';
+	var $table_id = 'id_cart_checkout';
     
     public function __construct()
     {
@@ -14,7 +14,8 @@ class Member_model extends CI_Model {
     {
         $this->db->set($this->table_id, 'UUID_SHORT()', FALSE);
 		$query = $this->db->insert($this->table, $param);
-		return $query;
+		$id = $this->db->insert_id();
+		return $id;
     }
     
     function delete($id)
@@ -27,20 +28,13 @@ class Member_model extends CI_Model {
     function info($param)
     {
         $where = array();
-        if (isset($param['id_member']) == TRUE)
+        if (isset($param['id_cart_checkout']) == TRUE)
         {
-            $where += array($this->table_id => $param['id_member']);
-        }
-        if (isset($param['email']) == TRUE)
-        {
-            $where += array('email' => $param['email']);
-        }
-        if (isset($param['password']) == TRUE)
-        {
-            $where += array('password' => $param['password']);
+            $where += array($this->table_id => $param['id_cart_checkout']);
         }
         
-        $this->db->select($this->table_id.', name, email, password, phone, created_date, updated_date');
+        $this->db->select($this->table_id.', subtotal, shipment_cost, total, status, created_date,
+						  updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -51,12 +45,20 @@ class Member_model extends CI_Model {
     {
         $where = array();
         
-        $this->db->select($this->table_id.', name, email, password, phone, created_date, updated_date');
+        $this->db->select($this->table_id.', subtotal, shipment_cost, total, status, created_date,
+						  updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);
         $this->db->limit($param['limit'], $param['offset']);
         $query = $this->db->get();
+        return $query;
+    }
+    
+    function update($id, $param)
+    {
+        $this->db->where($this->table_id, $id);
+        $query = $this->db->update($this->table, $param);
         return $query;
     }
 }

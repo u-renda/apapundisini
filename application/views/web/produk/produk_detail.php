@@ -1,4 +1,4 @@
-<div role="main" class="main shop">
+<div role="main" class="main shop" id="produk_detail_page">
 
 	<div class="container">
 
@@ -33,9 +33,12 @@
 
 					<p class="taller"><?php echo $product->description; ?></p>
 
-					<form method="post" class="cart" action="<?php echo $this->config->item('link_cart'); ?>">
+					<form method="post" class="cart" action="<?php echo $this->config->item('link_cart_create'); ?>" id="the_form">
+						<input type="hidden" name="id_product" value="<?php echo $product->id_product; ?>">
+						<input type="hidden" name="price" value="<?php echo $product->price; ?>">
+						<input type="hidden" name="stock" value="<?php echo $product->stock; ?>">
 						<div class="col-md-4 pl-none">
-							<div data-plugin-spinner data-plugin-options='{ "value":0, "step": 1, "min": 0, "max": <?php echo $product->stock; ?> }'>
+							<div data-plugin-spinner data-plugin-options='{ "value":0, "step": 1, "min": 1, "max": <?php echo $product->stock; ?> }'>
 								<div class="input-group">
 									<div class="spinner-buttons input-group-btn">
 										<button type="button" class="btn btn-default spinner-down">
@@ -52,7 +55,7 @@
 							</div>
 						</div>
 
-						<button type="submit" class="btn btn-primary btn-icon" value="Beli"><i class="fa fa-shopping-cart"></i>Beli</button>
+						<button type="submit" name="btnCart" id="btnCart" class="btn btn-primary btn-icon" value="Beli"><i class="fa fa-shopping-cart"></i>Beli</button>
 						
 					</form>
 
@@ -61,7 +64,6 @@
 					</div>
 
 				</div>
-
 
 			</div>
 		</div>

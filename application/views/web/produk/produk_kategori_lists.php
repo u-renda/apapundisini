@@ -5,7 +5,7 @@
 		<div class="row mt-xl">
 			<div class="col-md-6">
 				<h1 class="mb-none"><strong><?php echo ucwords($product_category->name); ?></strong></h1>
-				<p>Showing 1–12 of 25 results.</p>
+				<p><?php echo 'Showing '.$offset.' – '.$count.' of '.$total.' results.'; ?></p>
 			</div>
 		</div>
 
@@ -39,17 +39,7 @@
 
 		</div>
 
-		<div class="row">
-			<div class="col-md-12">
-				<ul class="pagination pull-right">
-					<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-				</ul>
-			</div>
-		</div>
+		<?php echo $this->pagination->create_links(); ?>
 
 	</div>
 

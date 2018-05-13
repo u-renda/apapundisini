@@ -540,9 +540,15 @@ else
 $config['title'] = 'Apapun Disini';
 
 /* WEB */
-$config['link_login'] = $config['base_url'].'login';
-$config['link_register'] = $config['base_url'].'login/register';
 $config['link_cart'] = $config['base_url'].'cart';
+$config['link_cart_create'] = $config['base_url'].'cart/cart_create';
+$config['link_cart_order'] = $config['base_url'].'cart/order';
+$config['link_cart_shipment'] = $config['base_url'].'cart/cart_shipment';
+$config['link_login'] = $config['base_url'].'login';
+$config['link_logout'] = $config['base_url'].'login/logout';
+$config['link_produk'] = $config['base_url'].'produk';
+$config['link_register'] = $config['base_url'].'login/register';
+$config['link_register_success'] = $config['base_url'].'login/register_success';
 
 /* ADMIN */
 $config['link_admin_home'] = $config['base_url'].'admin/home'; // index (gak perlu routes)

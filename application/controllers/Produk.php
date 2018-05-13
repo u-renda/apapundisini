@@ -40,6 +40,7 @@ class Produk extends MY_Controller {
 	function produk_kategori_lists($slug)
 	{
 		$data = array();
+		$offset = $this->input->get('per_page') ? $this->input->get('per_page') : 0;
 		
 		$query = $this->product_category_model->info(array('slug' => $slug));
 		
@@ -48,7 +49,7 @@ class Produk extends MY_Controller {
 			$product_category = $query->row();
 			
 			$param = array();
-			$param['limit'] = 20;
+			$param['limit'] = 4;
 			$param['offset'] = 0;
 			$param['order'] = 'created_date';
 			$param['sort'] = 'desc';
@@ -57,13 +58,35 @@ class Produk extends MY_Controller {
 			
 			if ($query2->num_rows() > 0)
 			{
-				$data['product'] = $query2->result();
-			}
-			
-			$data['product_category'] = $product_category;
-		}
+				$data['count'] = count($query->result()) + $offset;
+				$data['offset'] = $offset + 1;
+				
+				// Total
+				$query3 = $this->product_model->lists_count(array('id_product_category' => $product_category->id_product_category));
+				
+				// Pagination
+				$this->load->library('pagination');
 		
-		$data['view_content'] = 'web/produk/produk_kategori_lists';
-		$this->display_view('web/templates/frame', $data);
+				$config['base_url'] = $this->config->item('link_produk').'/'.$slug;
+				$config['total_rows'] = $query3;
+				$config['per_page'] = $param['limit'];
+				
+				$this->pagination->initialize($config);
+				
+				$data['total'] = $query3;
+				$data['product'] = $query2->result();
+				$data['product_category'] = $product_category;
+				$data['view_content'] = 'web/produk/produk_kategori_lists';
+				$this->display_view('web/templates/frame', $data);
+			}
+			else
+			{
+				redirect(base_url());
+			}
+		}
+		else
+		{
+			redirect(base_url());
+		}
 	}
 }

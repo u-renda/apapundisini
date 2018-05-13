@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Member_model extends CI_Model {
+class Provinsi_model extends CI_Model {
 
-    var $table = 'member';
-	var $table_id = 'id_member';
+    var $table = 'provinsi';
+	var $table_id = 'id_provinsi';
     
     public function __construct()
     {
@@ -27,20 +27,12 @@ class Member_model extends CI_Model {
     function info($param)
     {
         $where = array();
-        if (isset($param['id_member']) == TRUE)
+        if (isset($param['id_admin']) == TRUE)
         {
-            $where += array($this->table_id => $param['id_member']);
-        }
-        if (isset($param['email']) == TRUE)
-        {
-            $where += array('email' => $param['email']);
-        }
-        if (isset($param['password']) == TRUE)
-        {
-            $where += array('password' => $param['password']);
+            $where += array($this->table_id => $param['id_admin']);
         }
         
-        $this->db->select($this->table_id.', name, email, password, phone, created_date, updated_date');
+        $this->db->select($this->table_id.', name, price, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -51,7 +43,7 @@ class Member_model extends CI_Model {
     {
         $where = array();
         
-        $this->db->select($this->table_id.', name, email, password, phone, created_date, updated_date');
+        $this->db->select($this->table_id.', name, price, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

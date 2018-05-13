@@ -37,17 +37,30 @@
 				</div>
 			</footer>
 		</div>
-
+		<!--Modal-->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel"></h4>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+		<!--END Modal-->
 		<!-- Vendor -->
-		<script src="<?php echo base_url('assets/vendor/jquery').'/jquery.js'; ?>"></script>
+		<script src="<?php echo base_url('assets/js').'/jquery.min.js'; ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/owl.carousel').'/owl.carousel.js'; ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/magnific-popup').'/jquery.magnific-popup.js'; ?>"></script>
 
 		<script src="<?php echo base_url('assets/vendor/bootstrap/js').'/bootstrap.js'; ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/common').'/common.js'; ?>"></script>
-		<script src="<?php echo base_url('assets/vendor/jquery.validation').'/jquery.validation.js'; ?>"></script>
+		<script src="<?php echo base_url('assets/js').'/jquery.validate.js'; ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/isotope').'/jquery.isotope.js'; ?>"></script>
 		<script src="<?php echo base_url('assets/vendor/fuelux/js').'/spinner.js'; ?>"></script>
+		<script src="<?php echo base_url('assets/vendor/pnotify').'/pnotify.custom.js'; ?>"></script>
 		
 		<!-- Theme Base, Components and Settings -->
 		<script src="<?php echo base_url('assets/js').'/theme.js'; ?>"></script>

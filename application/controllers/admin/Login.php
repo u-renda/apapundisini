@@ -50,11 +50,11 @@ class Login extends CI_Controller {
 						
 					$cached = array(
 						'id_admin'=> $admin->id_admin,
-						'username'=> $admin->username,
-						'email'=> $admin->email,
-						'name'=> $admin->name,
+						'admin_username'=> $admin->username,
+						'admin_email'=> $admin->email,
+						'admin_name'=> $admin->name,
 						'is_login' => TRUE,
-						'role_name' => $admin->role_name,
+						'admin_role_name' => $admin->role_name,
 						'id_admin_role' => $admin->id_admin_role
 					);
 					
@@ -71,13 +71,13 @@ class Login extends CI_Controller {
 
     function logout()
     {
-        $this->session->sess_destroy();
+        //$this->session->sess_destroy();
 		$this->session->unset_userdata('id_admin');
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('name');
-		$this->session->unset_userdata('email');
+		$this->session->unset_userdata('admin_username');
+		$this->session->unset_userdata('admin_name');
+		$this->session->unset_userdata('admin_email');
 		$this->session->unset_userdata('is_login');
-		$this->session->unset_userdata('role_name');
+		$this->session->unset_userdata('admin_role_name');
 		$this->session->unset_userdata('id_admin_role');
 		
         redirect($this->config->item('link_admin_login'));

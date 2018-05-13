@@ -13,12 +13,12 @@
             </div>
         
             <!-- start: search & user box -->
-            <div class="header-right">
+            <div class="header-right mr-35">
                 <span class="separator"></span>
                 <div id="userbox" class="userbox">
                     <a href="#" data-toggle="dropdown">
-                        <div class="profile-info" data-lock-nama="<?php echo $this->session->userdata('name'); ?>" data-lock-email="<?php echo $this->session->userdata('email'); ?>">
-                            <span class="name"><?php echo $this->session->userdata('name'); ?></span>
+                        <div class="profile-info" data-lock-nama="<?php echo $this->session->userdata('admin_name'); ?>" data-lock-email="<?php echo $this->session->userdata('admin_email'); ?>">
+                            <span class="name"><?php echo $this->session->userdata('admin_name'); ?></span>
                         </div>
         
                         <i class="fa custom-caret"></i>

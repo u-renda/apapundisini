@@ -65,4 +65,26 @@ class Product_model extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+    
+    function lists_count($param)
+    {
+        $where = array();
+        if (isset($param['id_product_category']) == TRUE)
+        {
+            $where += array('id_product_category' => $param['id_product_category']);
+        }
+        
+        $this->db->select($this->table_id);
+        $this->db->from($this->table);
+        $this->db->where($where);
+        $query = $this->db->count_all_results();
+        return $query;
+    }
+    
+    function update($id, $param)
+    {
+        $this->db->where($this->table_id, $id);
+        $query = $this->db->update($this->table, $param);
+        return $query;
+    }
 }

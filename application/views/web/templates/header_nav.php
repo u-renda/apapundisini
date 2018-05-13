@@ -39,11 +39,27 @@
 										</div>
 									</form>
 								</li>
+								<?php if ($this->session->userdata('is_login_web') == TRUE) { ?>
+								<li class="dropdown dropdown-mega dropdown-mega-signin signin logged" id="headerAccount">
+									<a class="dropdown-toggle" href="#">
+										<i class="fa fa-user"></i> <?php echo $this->session->userdata('name'); ?>
+									</a>
+									<ul class="dropdown-menu">
+										<li>
+											<a href="<?php echo $this->config->item('link_cart'); ?>"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;Keranjang Belanja</a>
+										</li>
+										<li>
+											<a href="<?php echo $this->config->item('link_logout'); ?>"><i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;Keluar</a>
+										</li>
+									</ul>
+								</li>
+								<?php } else { ?>
 								<li>
 									<a href="<?php echo $this->config->item('link_login'); ?>">
 										Masuk / Daftar
 									</a>
 								</li>
+								<?php } ?>
 							</ul>
 						</nav>
 					</div>

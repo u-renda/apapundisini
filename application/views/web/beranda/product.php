@@ -6,36 +6,15 @@
 			</div>
 		</div>
 		<div class="row mt-lg">
+			<?php foreach ($product as $row) { ?>
 			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="asd">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
+				<a href="<?php echo base_url('produk').'/'.$row['product_category']['slug'].'/'.$row['slug']; ?>">
+					<img src="<?php echo $row['photo']; ?>" class="img-responsive" alt="<?php echo $row['name']; ?>">
+				</a>
+				<h5 class="mt-sm mb-none"><?php echo $row['name']; ?></h5>
+				<p class="mb-none"><?php echo $row['product_category']['name']; ?></p>
 			</div>
-			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
-			</div>
-			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
-			</div>
-			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
-			</div>
-			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
-			</div>
-			<div class="col-md-2 col-xs-6 center mb-lg">
-				<img src="<?php echo base_url('assets/img/product').'/team-1.jpg'; ?>" class="img-responsive" alt="">
-				<h5 class="mt-sm mb-none">Nama Produk</h5>
-				<p class="mb-none">Kategori</p>
-			</div>
+			<?php } ?>
 		</div>
 	</div>
 </section>

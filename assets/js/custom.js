@@ -30,80 +30,134 @@ var newPathname = winOrigin + "/" + winPath[1] + "/";
             list_parent.addClass('active');
         }
     });
-	
-	/*
-	Contact Form: Basic
-	*/
-	$('#contactForm').validate({
-		submitHandler: function(form) {
 
-			var $form = $(form),
-				$messageSuccess = $('#contactSuccess'),
-				$messageError = $('#contactError'),
-				$submitButton = $(this.submitButton);
+}).apply(this, [jQuery]);
 
-			$submitButton.button('loading');
-
-			// Ajax Submit
-			$.ajax({
-				type: 'POST',
-				url: $form.attr('action'),
-				data: {
-					name: $form.find('#name').val(),
-					email: $form.find('#email').val(),
-					subject: $form.find('#subject').val(),
-					message: $form.find('#message').val(),
-					submit: $form.find('#submit').val()
-				},
-				dataType: 'json',
-				complete: function(data) {
-				
-					if (typeof data.responseJSON === 'object') {
-						if (data.responseJSON.response == 'success') {
-
-							$messageSuccess.removeClass('hidden');
-							$messageError.addClass('hidden');
-
-							// Reset Form
-							$form.find('.form-control')
-								.val('')
-								.blur()
-								.parent()
-								.removeClass('has-success')
-								.removeClass('has-error')
-								.find('label.error')
-								.remove();
-
-							if (($messageSuccess.offset().top - 80) < $(window).scrollTop()) {
-								$('html, body').animate({
-									scrollTop: $messageSuccess.offset().top - 80
-								}, 300);
-							}
-
-							$submitButton.button('reset');
-							
-							return;
-
-						}
-					}
-
-					$messageError.removeClass('hidden');
-					$messageSuccess.addClass('hidden');
-
-					if (($messageError.offset().top - 80) < $(window).scrollTop()) {
-						$('html, body').animate({
-							scrollTop: $messageError.offset().top - 80
-						}, 300);
-					}
-
-					$form.find('.has-success')
-						.removeClass('has-success');
+$(function () {
+	// Cart create
+    if (document.getElementById('produk_detail_page') != null) {
+		$("#the_form").validate({
+			rules: {
+				quantity: "required"
+			},
+			submitHandler: function(form) {
+				$.ajax(
+				{
+					type: "POST",
+					url: form.action,
+					data: $(form).serialize(), 
+					cache: false,
+					beforeSend : function (){
+						$('#btnCart').html('<i class="fa fa-spinner fa-spin"></i>');
+					},
+					success: function(data)
+					{
+						$('#btnCart').html('<i class="fa fa-shopping-cart"></i>Beli');
+						var response = $.parseJSON(data);
 						
-					$submitButton.button('reset');
+						new PNotify({
+							title: response.title,
+							text: response.text,
+							type: response.type
+						});
+					}
+				});
+				return false;
+			}
+		});
+    }
+	
+	// Cart shipment
+    if (document.getElementById('cart_page') != null) {
+		$("#frmCalculateShipping").validate({
+			rules: {
+				address: "required",
+				id_provinsi: "required"
+			},
+			submitHandler: function(form) {
+				$.ajax(
+				{
+					type: "POST",
+					url: form.action,
+					data: $(form).serialize(), 
+					cache: false,
+					beforeSend : function (){
+						$('#btnCartShipment').html('Loading...');
+					},
+					success: function(data)
+					{
+						$('#btnCartShipment').html('');
+						var response = $.parseJSON(data);
+						$('#shipping').html(response.shipping);
+						$('#amount').html(response.total_order);
+						$('#btnOrder').removeAttr('disabled');
+						
+						new PNotify({
+							title: response.title,
+							text: response.text,
+							type: response.type
+						});
+					}
+				});
+				return false;
+			}
+		});
+		
+		$('body').delegate(".remove", "click", function() {
+            var id = $(this).attr("id");
+            var action = "cart/cart_delete";
+            var dataString = 'id='+ id +'&action='+ action;
+            $.ajax(
+            {
+                type: "POST",
+                url: newPathname + action,
+                data: dataString,
+                cache: false,
+                success: function(data)
+                {
+                    $('.modal-dialog').removeClass('modal-lg');
+                    $('.modal-dialog').addClass('modal-sm');
+                    $('.modal-title').text('Confirm Delete');
+                    $('.modal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+            return false;
+        });
+    }
+});
 
-				}
-			});
-		}
-	});
+// Notifications - Config
+(function($) {
+
+	'use strict';
+
+	// use font awesome icons if available
+	if ( typeof PNotify != 'undefined' ) {
+		PNotify.prototype.options.styling = "fontawesome";
+
+		$.extend(true, PNotify.prototype.options, {
+			shadow: false,
+			stack: {
+				spacing1: 15,
+	        	spacing2: 15
+        	}
+		});
+
+		$.extend(PNotify.styling.fontawesome, {
+			// classes
+			container: "notification",
+			notice: "notification-warning",
+			info: "notification-info",
+			success: "notification-success",
+			error: "notification-danger",
+
+			// icons
+			notice_icon: "fa fa-exclamation",
+			info_icon: "fa fa-info",
+			success_icon: "fa fa-check",
+			error_icon: "fa fa-times"
+		});
+	}
 
 }).apply(this, [jQuery]);

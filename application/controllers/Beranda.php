@@ -6,6 +6,7 @@ class Beranda extends MY_Controller {
 	function __construct()
     {
         parent::__construct();
+		$this->load->model('product_category_model');
 		$this->load->model('product_model');
 		$this->load->model('slider_model');
 		$this->load->model('sponsor_model');
@@ -37,10 +38,37 @@ class Beranda extends MY_Controller {
 		$param2['sort'] = 'desc';
 		$query2 = $this->product_model->lists($param2);
 		
-		$product = array();
 		if ($query2->num_rows() > 0)
 		{
 			 $product = $query2->result();
+			 
+			 $result = array();
+			 foreach ($product as $row)
+			 {
+				$query4 = $this->product_category_model->info(array('id_product_category' => $row->id_product_category));
+				
+				if ($query4->num_rows() > 0)
+				{
+					$product_category = $query4->row();
+					
+					$result[] = array(
+						'id_product' => $row->id_product,
+						'name' => $row->name,
+						'slug' => $row->slug,
+						'price' => $row->price,
+						'photo' => $row->photo,
+						'stock' => $row->stock,
+						'description' => $row->description,
+						'created_date' => $row->created_date,
+						'updated_date' => $row->updated_date,
+						'product_category' => array(
+							'name' => $product_category->name,
+							'slug' => $product_category->slug
+						)
+					);
+				}
+				
+			 }
 		}
 		
 		// SPONSOR
@@ -58,7 +86,7 @@ class Beranda extends MY_Controller {
 		}
 		
 		$data['slider'] = $slider;
-		$data['product'] = $product;
+		$data['product'] = $result;
 		$data['sponsor'] = $sponsor;
 		$data['view_content'] = 'web/beranda/index';
 		$this->display_view('web/templates/frame', $data);
