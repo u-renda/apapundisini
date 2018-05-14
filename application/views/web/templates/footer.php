@@ -24,12 +24,7 @@
 				<div class="footer-copyright">
 					<div class="container">
 						<div class="row">
-							<div class="col-md-1">
-								<a href="index.html" class="logo">
-									<img alt="Porto Website Template" class="img-responsive" src="<?php echo base_url('assets/img').'/logo-footer.png'; ?>">
-								</a>
-							</div>
-							<div class="col-md-11">
+							<div class="col-md-12">
 								<p>© Copyright <?php echo date('Y'); ?>. All Rights Reserved.</p>
 							</div>
 						</div>
