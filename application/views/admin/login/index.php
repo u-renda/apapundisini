@@ -37,7 +37,7 @@
 		<section class="body-sign">
 			<div class="center-sign">
 				<a href="<?php echo $this->config->item('link_admin_login'); ?>" class="logo pull-left">
-					<img src="<?php echo base_url('assets/img').'/logo-admin.png'; ?>" height="54" alt="<?php echo $this->config->item('title'); ?>" />
+					<img src="<?php echo base_url('assets/img').'/logo.png'; ?>" height="54" alt="<?php echo $this->config->item('title'); ?>" />
 				</a>
 
 				<div class="panel panel-sign">

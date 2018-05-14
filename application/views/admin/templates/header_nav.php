@@ -5,7 +5,7 @@
         <header class="header">
             <div class="logo-container">
                 <a href="<?php echo $this->config->item('link_admin_home'); ?>" class="logo">
-                    <img src="<?php echo base_url('assets/img').'/logo-admin.png'; ?>" height="35" alt="<?php echo $this->config->item('title'); ?>" />
+                    <img src="<?php echo base_url('assets/img').'/logo.png'; ?>" height="35" alt="<?php echo $this->config->item('title'); ?>" />
                 </a>
                 <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
                     <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
