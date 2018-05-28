@@ -3,7 +3,7 @@
 		<div class="header-column">
 			<div class="header-logo">
 				<a href="<?php echo base_url(); ?>">
-					<img alt="<?php echo $this->config->item('title'); ?>" width="82" height="40" src="<?php echo base_url('assets/img').'/logo.png'; ?>">
+					<img alt="<?php echo $this->config->item('title'); ?>" width="82" height="40" src="<?php echo base_url('assets/img').'/logo.jpg'; ?>">
 				</a>
 			</div>
 		</div>
