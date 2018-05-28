@@ -180,11 +180,17 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="actions-continue">
-							<?php if ($subtotal != 0 && count($member_address) > 0) { ?>
-							<a href="<?php echo $this->config->item('link_cart_order'); ?>" class="btn pull-right btn-primary btn-lg">Proses Order <i class="fa fa-angle-right ml-xs"></i></a>
-							<?php } else { ?>
-							<button class="btn pull-right btn-primary btn-lg" disabled="disabled" id="btnOrder">Proses Order <i class="fa fa-angle-right ml-xs"></i></button>
-							<?php } ?>
+							
+							<form action="<?php echo $this->config->item('link_cart_order'); ?>" method="post">
+								<input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>">
+								<input type="hidden" name="id_cart_checkout" value="<?php echo $cart_checkout['id_cart_checkout']; ?>">
+								<?php if ($subtotal != 0 && count($member_address) > 0) { ?>
+								<input type="submit" class="btn pull-right btn-primary btn-lg" name="submit" value="Proses Order" id="btnOrder" />
+								<?php } else { ?>
+								<input type="submit" disabled="disabled" class="btn pull-right btn-primary btn-lg" name="submit" value="Proses Order" id="btnOrder" />
+								<button class="btn pull-right btn-primary btn-lg" disabled="disabled" id="btnOrder">Proses Order</button>
+								<?php } ?>
+							</form>
 						</div>
 					</div>
 				</div>

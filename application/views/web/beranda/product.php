@@ -9,7 +9,7 @@
 			<?php foreach ($product as $row) { ?>
 			<div class="col-md-2 col-xs-6 center mb-lg">
 				<a href="<?php echo base_url('produk').'/'.$row['product_category']['slug'].'/'.$row['slug']; ?>">
-					<img src="<?php echo $row['photo']; ?>" class="img-responsive" alt="<?php echo $row['name']; ?>">
+					<img src="<?php echo $row['photo_small']; ?>" class="img-responsive" alt="<?php echo $row['name']; ?>">
 				</a>
 				<h5 class="mt-sm mb-none"><?php echo $row['name']; ?></h5>
 				<p class="mb-none"><?php echo $row['product_category']['name']; ?></p>

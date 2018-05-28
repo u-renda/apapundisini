@@ -65,6 +65,40 @@ $(function () {
 				return false;
 			}
 		});
+		
+		$("#submitComment").validate({
+			rules: {
+				message: "required"
+			},
+			submitHandler: function(form) {
+				$.ajax(
+				{
+					type: "POST",
+					url: form.action,
+					data: $(form).serialize(), 
+					cache: false,
+					beforeSend : function (){
+						$('#btnComment').html('Loading...');
+					},
+					success: function(data)
+					{
+						$('#btnComment').html('Kasih Komentar');
+						var response = $.parseJSON(data);
+						
+						new PNotify({
+							title: response.title,
+							text: response.text,
+							type: response.type
+						});
+						
+						setTimeout(function(){
+							window.location.reload();
+						}, 2000);
+					}
+				});
+				return false;
+			}
+		});
     }
 	
 	// Cart shipment

@@ -37,12 +37,14 @@ class Product_model extends CI_Model {
         }
         
         $this->db->select($this->table_id.', '.$this->table.'.id_product_category,
-						  '.$this->table.'.name, '.$this->table.'.slug, price, photo, stock,
-						  description, '.$this->table.'.created_date, '.$this->table.'.updated_date,
-						  product_category.name AS product_category_name,
-						  product_category.slug AS product_category_slug');
+						  '.$this->table.'.id_seller, '.$this->table.'.name, '.$this->table.'.slug,
+						  price, photo, stock, description, '.$this->table.'.created_date,
+						  '.$this->table.'.updated_date, product_category.name AS product_category_name,
+						  product_category.slug AS product_category_slug, seller.name AS seller_name,
+						  seller.logo AS seller_logo, seller.tagline AS seller_tagline');
         $this->db->from($this->table);
         $this->db->join('product_category', $this->table.'.id_product_category = product_category.id_product_category');
+        $this->db->join('seller', $this->table.'.id_seller = seller.id_seller');
         $this->db->where($where);
         $query = $this->db->get();
         return $query;
@@ -55,9 +57,13 @@ class Product_model extends CI_Model {
         {
             $where += array('id_product_category' => $param['id_product_category']);
         }
+        if (isset($param['id_seller']) == TRUE)
+        {
+            $where += array('id_seller' => $param['id_seller']);
+        }
 		
-        $this->db->select($this->table_id.', id_product_category, name, slug, price, photo, stock,
-						  description, created_date, updated_date');
+        $this->db->select($this->table_id.', id_product_category, id_seller, name, slug, price, photo,
+						  stock, description, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);
@@ -72,6 +78,10 @@ class Product_model extends CI_Model {
         if (isset($param['id_product_category']) == TRUE)
         {
             $where += array('id_product_category' => $param['id_product_category']);
+        }
+        if (isset($param['id_seller']) == TRUE)
+        {
+            $where += array('id_seller' => $param['id_seller']);
         }
         
         $this->db->select($this->table_id);

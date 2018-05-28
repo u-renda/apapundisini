@@ -533,7 +533,7 @@ if(is_bool(LOCALHOST) || LOCALHOST == 'localhost')
 else
 {
     $config['upload_url'] = $config['base_url'].'assets/img/';
-    $config['upload_dir'] = '/home/k8999506/public_html/assets/img/';
+    $config['upload_dir'] = '/home/u3674853/public_html/assets/img/';
 }
 
 /* MAIN */
@@ -544,6 +544,7 @@ $config['link_cart'] = $config['base_url'].'cart';
 $config['link_cart_create'] = $config['base_url'].'cart/cart_create';
 $config['link_cart_order'] = $config['base_url'].'cart/order';
 $config['link_cart_shipment'] = $config['base_url'].'cart/cart_shipment';
+$config['link_comment_create'] = $config['base_url'].'comment/comment_create';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'login/logout';
 $config['link_produk'] = $config['base_url'].'produk';
@@ -551,14 +552,18 @@ $config['link_register'] = $config['base_url'].'login/register';
 $config['link_register_success'] = $config['base_url'].'login/register_success';
 
 /* ADMIN */
+$config['link_admin_comment'] = $config['base_url'].'admin/comment';
 $config['link_admin_home'] = $config['base_url'].'admin/home'; // index (gak perlu routes)
 $config['link_admin_login'] = $config['base_url'].'admin/login'; // index (gak perlu routes)
 $config['link_admin_logout'] = $config['base_url'].'admin/logout';
+$config['link_admin_order'] = $config['base_url'].'admin/order';
 $config['link_admin_produk'] = $config['base_url'].'admin/produk';
 $config['link_admin_produk_kategori'] = $config['base_url'].'admin/produk_kategori';
 $config['link_admin_produk_kategori_create'] = $config['base_url'].'admin/produk_kategori_create';
 $config['link_admin_produk_kategori_update'] = $config['base_url'].'admin/produk_kategori_update';
 $config['link_admin_produk_create'] = $config['base_url'].'admin/produk_create';
 $config['link_admin_produk_update'] = $config['base_url'].'admin/produk_update';
+$config['link_admin_seller'] = $config['base_url'].'admin/seller';
+$config['link_admin_seller_create'] = $config['base_url'].'admin/seller_create';
 $config['link_admin_slider'] = $config['base_url'].'admin/slider';
 $config['link_admin_slider_create'] = $config['base_url'].'admin/slider_create';

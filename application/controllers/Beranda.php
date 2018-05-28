@@ -8,8 +8,8 @@ class Beranda extends MY_Controller {
         parent::__construct();
 		$this->load->model('product_category_model');
 		$this->load->model('product_model');
+		$this->load->model('seller_model');
 		$this->load->model('slider_model');
-		$this->load->model('sponsor_model');
     }
 
     function index()
@@ -34,7 +34,7 @@ class Beranda extends MY_Controller {
 		$param2 = array();
 		$param2['limit'] = 6;
 		$param2['offset'] = 0;
-		$param2['order'] = 'created_date';
+		$param2['order'] = 'rand()';
 		$param2['sort'] = 'desc';
 		$query2 = $this->product_model->lists($param2);
 		
@@ -50,6 +50,16 @@ class Beranda extends MY_Controller {
 				if ($query4->num_rows() > 0)
 				{
 					$product_category = $query4->row();
+					$explode = explode('.',$row->photo);
+					
+					if (is_bool(LOCALHOST) || LOCALHOST == 'localhost')
+					{
+						$photo_small = $explode[0].'_165x165.'.$explode[1];
+					}
+					else
+					{
+						$photo_small = $explode[0].$explode[1].'_165x165.'.$explode[2];
+					}
 					
 					$result[] = array(
 						'id_product' => $row->id_product,
@@ -61,6 +71,7 @@ class Beranda extends MY_Controller {
 						'description' => $row->description,
 						'created_date' => $row->created_date,
 						'updated_date' => $row->updated_date,
+						'photo_small' => $photo_small,
 						'product_category' => array(
 							'name' => $product_category->name,
 							'slug' => $product_category->slug
@@ -71,23 +82,23 @@ class Beranda extends MY_Controller {
 			 }
 		}
 		
-		// SPONSOR
+		// SELLER'S LOGO
 		$param3 = array();
 		$param3['limit'] = 6;
 		$param3['offset'] = 0;
-		$param3['order'] = 'created_date';
+		$param3['order'] = 'rand()';
 		$param3['sort'] = 'desc';
-		$query3 = $this->sponsor_model->lists($param3);
+		$query3 = $this->seller_model->lists($param3);
 		
-		$sponsor = array();
+		$seller = array();
 		if ($query3->num_rows() > 0)
 		{
-			 $sponsor = $query3->result();
+			 $seller = $query3->result();
 		}
 		
 		$data['slider'] = $slider;
 		$data['product'] = $result;
-		$data['sponsor'] = $sponsor;
+		$data['seller'] = $seller;
 		$data['view_content'] = 'web/beranda/index';
 		$this->display_view('web/templates/frame', $data);
 	}

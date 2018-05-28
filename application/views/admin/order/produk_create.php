@@ -20,9 +20,9 @@
         <div class="col-md-12">
             <section class="panel panel-featured">
                 <header class="panel-heading">
-                    <h2 class="panel-title">Tambah Baru - <?php echo $seller->name; ?></h2>
+                    <h2 class="panel-title">Tambah Baru</h2>
                 </header>
-                <form action="<?php echo $this->config->item('link_admin_produk_create').'?id_seller='.$seller->id_seller; ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
+                <form action="<?php echo $this->config->item('link_admin_produk_create'); ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
                     <div class="panel-body">
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><span class="text-danger">*</span> Kategori Produk:</label>

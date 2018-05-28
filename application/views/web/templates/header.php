@@ -30,6 +30,7 @@
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css').'/theme.css'; ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css').'/theme-elements.css'; ?>">
+		<link rel="stylesheet" href="<?php echo base_url('assets/css').'/theme-blog.css'; ?>">
 		<link rel="stylesheet" href="<?php echo base_url('assets/css').'/theme-shop.css'; ?>">
 
 		<!-- Current Page CSS -->

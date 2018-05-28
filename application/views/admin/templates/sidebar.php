@@ -23,7 +23,13 @@
                     <li class="list-main">
                         <a href="<?php echo $this->config->item('link_admin_slider'); ?>">
                             <i class="fa fa-th-large" aria-hidden="true"></i>
-                            <span>Slider</span>
+                            <span>Slider (Banner Utama)</span>
+                        </a>
+                    </li>
+                    <li class="list-main">
+                        <a href="<?php echo $this->config->item('link_admin_seller'); ?>">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <span>Penjual</span>
                         </a>
                     </li>
                     <li class="nav-parent list-parent" id="produk">
@@ -43,6 +49,12 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="list-main">
+                        <a href="<?php echo $this->config->item('link_admin_order'); ?>">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span>Order</span>
+                        </a>
                     </li>
                     <li class="nav-parent list-parent" id="lainnya">
                         <a>

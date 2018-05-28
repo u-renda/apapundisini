@@ -80,6 +80,70 @@ $(function () {
             }]
         });
     }
+	
+    // Seller Lists
+    if (document.getElementById('seller_lists_page') != null) {
+        $("#multipleTable").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "seller_get",
+                        dataType: "json",
+                        type: "POST",
+                        data: {}
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "total"
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverSorting: true,
+                serverFiltering: true,
+                cache: false
+            },
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            pageable: {
+                buttonCount: 5,
+                input: true,
+                pageSizes: true,
+                refresh: true
+            },
+            selectable: "row",
+            resizable: true,
+            columns: [{
+                field: "No",
+                sortable: false,
+                width: 30
+            },
+            {
+                field: "Nama",
+                sortable: false,
+                width: 150
+            },
+            {
+                field: "Tagline",
+                sortable: false,
+                width: 200
+            },
+            {
+                field: "Logo",
+                sortable: false,
+                width: 70,
+                template: "#= data.Logo #"
+            },
+            {
+                field: "Aksi",
+                sortable: false,
+                width: 70,
+                template: "#= data.Aksi #"
+            }]
+        });
+    }
     
     // Keunggulan Lists
     if (document.getElementById('keunggulan_lists_page') != null) {
@@ -331,7 +395,7 @@ $(function () {
             {
                 field: "Keterangan",
                 sortable: false,
-                width: 300
+                width: 200
             },
             {
                 field: "Foto",
@@ -342,7 +406,7 @@ $(function () {
             {
                 field: "Aksi",
                 sortable: false,
-                width: 50,
+                width: 80,
                 template: "#= data.Aksi #"
             }]
         });
@@ -392,6 +456,65 @@ $(function () {
                 sortable: false,
                 width: 70,
                 template: "#= data.Nama #"
+            },
+            {
+                field: "Aksi",
+                sortable: false,
+                width: 50,
+                template: "#= data.Aksi #"
+            }]
+        });
+    }
+    
+    // Komentar Lists
+    if (document.getElementById('comment_lists_page') != null) {
+        $("#multipleTable").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "comment_get",
+                        dataType: "json",
+                        type: "POST",
+                        data: {}
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "total"
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverSorting: true,
+                serverFiltering: true,
+                cache: false
+            },
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            pageable: {
+                buttonCount: 5,
+                input: true,
+                pageSizes: true,
+                refresh: true
+            },
+            selectable: "row",
+            resizable: true,
+            columns: [{
+                field: "No",
+                sortable: false,
+                width: 30
+            },
+            {
+                field: "NamaMember",
+				title: "Nama Member",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Komentar",
+                sortable: false,
+                width: 300
             },
             {
                 field: "Aksi",
@@ -634,5 +757,85 @@ $(function () {
 				}
 			});
 		});
+    }
+    
+    // Order Lists
+    if (document.getElementById('order_lists_page') != null) {
+        $("#multipleTable").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "order_get",
+                        dataType: "json",
+                        type: "POST",
+                        data: {}
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "total"
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverSorting: true,
+                serverFiltering: true,
+                cache: false
+            },
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            pageable: {
+                buttonCount: 5,
+                input: true,
+                pageSizes: true,
+                refresh: true
+            },
+            selectable: "row",
+            resizable: true,
+            columns: [{
+                field: "No",
+                sortable: false,
+                width: 30
+            },
+            {
+                field: "Nama",
+                sortable: false,
+                width: 70
+            },
+            {
+                field: "Kategori",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Harga",
+				title: "Harga (Rp)",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Stok",
+                sortable: false,
+                width: 50
+            },
+            {
+                field: "Keterangan",
+                sortable: false,
+                width: 300
+            },
+            {
+                field: "Foto",
+                sortable: false,
+                width: 100,
+                template: "#= data.Foto #"
+            },
+            {
+                field: "Aksi",
+                sortable: false,
+                width: 50,
+                template: "#= data.Aksi #"
+            }]
+        });
     }
 });

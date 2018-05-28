@@ -60,7 +60,14 @@ $route['produk/(:any)/(:any)'] = 'produk/index/$1';
 
 /* ADMIN */
 $route['admin'] = 'admin/login/index';
+$route['admin/comment'] = 'admin/comment/comment_lists';
+$route['admin/comment_delete'] = 'admin/comment/comment_delete';
+$route['admin/comment_get'] = 'admin/comment/comment_get';
 $route['admin/logout'] = 'admin/login/logout';
+$route['admin/order'] = 'admin/order/order_lists';
+$route['admin/order_delete'] = 'admin/order/order_delete';
+$route['admin/order_get'] = 'admin/order/order_get';
+$route['admin/order_update'] = 'admin/order/order_update';
 $route['admin/produk'] = 'admin/produk/produk_lists';
 $route['admin/produk_kategori'] = 'admin/produk/produk_kategori_lists';
 $route['admin/produk_kategori_create'] = 'admin/produk/produk_kategori_create';
@@ -71,6 +78,10 @@ $route['admin/produk_create'] = 'admin/produk/produk_create';
 $route['admin/produk_delete'] = 'admin/produk/produk_delete';
 $route['admin/produk_get'] = 'admin/produk/produk_get';
 $route['admin/produk_update'] = 'admin/produk/produk_update';
+$route['admin/seller'] = 'admin/seller/seller_lists';
+$route['admin/seller_create'] = 'admin/seller/seller_create';
+$route['admin/seller_delete'] = 'admin/seller/seller_delete';
+$route['admin/seller_get'] = 'admin/seller/seller_get';
 $route['admin/slider'] = 'admin/slider/slider_lists';
 $route['admin/slider_create'] = 'admin/slider/slider_create';
 $route['admin/slider_delete'] = 'admin/slider/slider_delete';

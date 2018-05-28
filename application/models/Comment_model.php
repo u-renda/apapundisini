@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sponsor_model extends CI_Model {
+class Comment_model extends CI_Model {
 
-    var $table = 'sponsor';
-	var $table_id = 'id_sponsor';
+    var $table = 'comment';
+	var $table_id = 'id_comment';
     
     public function __construct()
     {
@@ -27,13 +27,17 @@ class Sponsor_model extends CI_Model {
     function info($param)
     {
         $where = array();
-        if (isset($param['id_sponsor']) == TRUE)
+        if (isset($param['id_comment']) == TRUE)
         {
-            $where += array($this->table_id => $param['id_sponsor']);
+            $where += array($this->table_id => $param['id_comment']);
         }
         
-        $this->db->select($this->table_id.', photo, created_date, updated_date');
+        $this->db->select($this->table_id.', '.$this->table.'.id_product, '.$this->table.'.id_member,
+						  message, '.$this->table.'.created_date, '.$this->table.'.updated_date,
+						  member.name AS member_name');
         $this->db->from($this->table);
+        $this->db->join('product', $this->table.'.id_product = product.id_product');
+        $this->db->join('member', $this->table.'.id_member = member.id_member');
         $this->db->where($where);
         $query = $this->db->get();
         return $query;
@@ -42,8 +46,13 @@ class Sponsor_model extends CI_Model {
     function lists($param)
     {
         $where = array();
+        if (isset($param['id_product']) == TRUE)
+        {
+            $where += array('id_product' => $param['id_product']);
+        }
         
-        $this->db->select($this->table_id.', photo, created_date, updated_date');
+        $this->db->select($this->table_id.', id_product, id_member, message, created_date,
+						  updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

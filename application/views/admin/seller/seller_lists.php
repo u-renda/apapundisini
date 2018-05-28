@@ -1,6 +1,6 @@
 <section role="main" class="content-body">
 	<header class="page-header">
-		<h2>Daftar Produk</h2>
+		<h2>Penjual</h2>
 	
 		<div class="right-wrapper pull-right mr-xl">
 			<ol class="breadcrumbs">
@@ -9,17 +9,17 @@
 						<i class="fa fa-home"></i>
 					</a>
 				</li>
-				<li><span>Produk</span></li>
-				<li><span>Daftar Produk</span></li>
+				<li><span>Penjual</span></li>
+				<li><span>Lists</span></li>
 			</ol>
 		</div>
 	</header>
 	<!-- start: page -->
-	<div class="row" id="produk_lists_page">
+	<div class="row" id="seller_lists_page">
 		<div class="col-md-6 col-lg-12 col-xl-6">
 			<section class="panel">
 				<div class="panel-body">
-					<a href="<?php echo $this->config->item('link_admin_seller'); ?>" type="button" class="mb-xl mt-xs mr-xs btn btn-primary">
+					<a href="<?php echo $this->config->item('link_admin_seller_create'); ?>" type="button" class="mb-xl mt-xs mr-xs btn btn-primary">
 						<i class="fa fa-plus"></i> Tambah Baru
 					</a>
 					<?php

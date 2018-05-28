@@ -17,6 +17,7 @@ if ( ! function_exists('upload_image')) {
             $param2['tmp_name'] = $param["tmp_name"];
             $param2['tmp_file'] = $param2['target_dir'] . $param2['name'] . '.' . $imageFileType;
             $param2['size'] = $param["size"];
+            $param2['folder'] = $folder;
 			
             $check_image = check_image($param2);
 			
@@ -77,8 +78,29 @@ if ( ! function_exists('check_image')) {
                         
                         if ($save_resize == TRUE)
                         {
-                            $msg = 'true';
-                            return $msg;
+							$config['image_library'] = 'gd2';
+							$config['source_image']	= $param['target_file'];
+							$config['maintain_ratio'] = FALSE;
+							
+                            if ($param['folder'] == 'product')
+							{
+								$config['width'] = 165;
+								$config['height'] = 165;
+								$config['new_image'] = $CI->config->item('upload_dir').$param['folder'].'/'.$param['name']."_165x165.".$param['imageFileType'];
+							}
+							
+							$CI->image_lib->initialize($config);
+			
+							if ( ! $CI->image_lib->resize())
+							{
+								$msg = $CI->image_lib->display_errors();
+								return $msg;
+							}
+							else
+							{
+								$msg = 'true';
+								return $msg;
+							}
                         }
                         else
                         {

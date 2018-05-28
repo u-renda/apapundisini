@@ -350,3 +350,7 @@ body .ui-pnotify.icon-nb .notification .ui-pnotify-icon > span {
 		visibility: visible !important;
 	}
 }
+
+ul.comments li {
+    padding: 10px 0 0 10px;
+}

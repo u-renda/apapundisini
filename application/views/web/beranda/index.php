@@ -7,7 +7,7 @@
 <?php $this->load->view('web/beranda/product'); ?>
 <!--END PRODUCT-->
 <!--START SPONSOR-->
-<?php $this->load->view('web/beranda/sponsor'); ?>
+<?php $this->load->view('web/beranda/seller'); ?>
 <!--END SPONSOR-->
 
 </div>

@@ -6,6 +6,8 @@ class Produk extends MY_Controller {
 	function __construct()
     {
         parent::__construct();
+		$this->load->model('comment_model');
+		$this->load->model('member_model');
 		$this->load->model('product_category_model');
 		$this->load->model('product_model');
     }
@@ -25,14 +27,76 @@ class Produk extends MY_Controller {
 	function produk_detail($slug)
 	{
 		$data = array();
+		$comment = array();
 		
 		$query = $this->product_model->info(array('slug' => $slug));
 		
 		if ($query->num_rows() > 0)
 		{
 			$data['product'] = $query->row();
+			
+			// Produk Lainnya
+			$param = array();
+			$param['limit'] = 4;
+			$param['offset'] = 0;
+			$param['order'] = 'rand()';
+			$param['sort'] = 'desc';
+			$param['id_seller'] = $query->row()->id_seller;
+			$query2 = $this->product_model->lists($param);
+			
+			if ($query2->num_rows() > 0)
+			{
+				$product_lists = array();
+				foreach ($query2->result() as $row)
+				{
+					$query3 = $this->product_category_model->info(array('id_product_category' => $row->id_product_category));
+					$explode = explode('.', $row->photo);
+					
+					if (is_bool(LOCALHOST) || LOCALHOST == 'localhost')
+					{
+						$photo_small = $explode[0].'_165x165.'.$explode[1];
+					}
+					else
+					{
+						$photo_small = $explode[0].$explode[1].'_165x165.'.$explode[2];
+					}
+					
+					$temp = array();
+					$temp['slug'] = $row->slug;
+					$temp['name'] = ucwords($row->name);
+					$temp['photo'] = $photo_small;
+					$temp['price'] = 'Rp '.number_format($row->price,0,',','.');
+					$temp['product_category_slug'] = $query3->row()->slug;
+					$product_lists[] = $temp;
+				}
+				
+				$data['product_lists'] = $product_lists;
+			}
+			
+			// Komentar
+			$param2 = array();
+			$param2['limit'] = 4;
+			$param2['offset'] = 0;
+			$param2['order'] = 'rand()';
+			$param2['sort'] = 'desc';
+			$param2['id_product'] = $query->row()->id_product;
+			$query4 = $this->comment_model->lists($param2);
+			
+			if ($query4->num_rows() > 0)
+			{
+				foreach ($query4->result() as $row)
+				{
+					$query5 = $this->member_model->info(array('id_member' => $row->id_member));
+					
+					$temp2 = array();
+					$temp2['member_name'] = $query5->row()->name;
+					$temp2['message'] = $row->message;
+					$comment[] = $temp2;
+				}
+			}
 		}
 		
+		$data['comment'] = $comment;
 		$data['view_content'] = 'web/produk/produk_detail';
 		$this->display_view('web/templates/frame', $data);
 	}

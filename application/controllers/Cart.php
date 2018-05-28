@@ -262,8 +262,32 @@ class Cart extends MY_Controller {
 	function order()
 	{
 		$data = array();
+		$id_cart_checkout = $this->input->post('id_cart_checkout');
+		print_r($this->input->post());die();
+		$param = array();
+		$param['subtotal'] = $this->input->post('subtotal');
+		$param['status'] = 2;
+		$query = $this->cart_checkout_model->update($id_cart_checkout, $param);
 		
+		$param3 = array();
+		$param3['limit'] = 20;
+		$param3['offset'] = 0;
+		$param3['order'] = 'created_date';
+		$param3['sort'] = 'desc';
+		$param3['id_cart_checkout'] = $id_cart_checkout;
+		$param3['status'] = 1;
+		$query3 = $this->cart_model->lists($param3);
 		
+		if ($query3->num_rows() > 0)
+		{
+			foreach ($query3->result() as $row)
+			{
+				$param2 = array();
+				$param2['status'] = 2;
+				$query2 = $this->cart_model->update($row->id_cart, $param2);
+			}
+		}
+				
 		$data['view_content'] = 'web/cart/order';
 		$this->display_view('web/templates/frame', $data);
 	}
