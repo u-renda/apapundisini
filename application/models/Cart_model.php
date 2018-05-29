@@ -33,16 +33,19 @@ class Cart_model extends CI_Model {
         }
         if (isset($param['id_member']) == TRUE)
         {
-            $where += array('id_member' => $param['id_member']);
+            $where += array($this->table.'.id_member' => $param['id_member']);
         }
         if (isset($param['status']) == TRUE)
         {
             $where += array('status' => $param['status']);
         }
         
-        $this->db->select($this->table_id.', id_product, id_member, id_cart_checkout, quantity, total,
-						  status, created_date, updated_date');
+        $this->db->select($this->table_id.', id_product, '.$this->table.'.id_member, id_cart_checkout,
+						  quantity, total, status, '.$this->table.'.created_date,
+						  '.$this->table.'.updated_date, member.name AS member_name,
+						  member.phone AS member_phone, member.email AS member_email');
         $this->db->from($this->table);
+        $this->db->join('member', $this->table.'.id_member = member.id_member');
         $this->db->where($where);
         $query = $this->db->get();
         return $query;

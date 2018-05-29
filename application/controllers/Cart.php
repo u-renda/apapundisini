@@ -250,7 +250,7 @@ class Cart extends MY_Controller {
 		{
 			$data['provinsi_lists'] = $query4->result();
 		}
-		
+		//print_r($cart_checkout);die();
 		$data['cart_checkout'] = $cart_checkout;
 		$data['member_address'] = $member_address;
 		$data['subtotal'] = $subtotal;
@@ -263,7 +263,7 @@ class Cart extends MY_Controller {
 	{
 		$data = array();
 		$id_cart_checkout = $this->input->post('id_cart_checkout');
-		print_r($this->input->post());die();
+		
 		$param = array();
 		$param['subtotal'] = $this->input->post('subtotal');
 		$param['status'] = 2;

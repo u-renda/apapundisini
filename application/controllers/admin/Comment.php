@@ -10,6 +10,7 @@ class Comment extends CI_Controller {
         parent::__construct();
 		$this->load->model('comment_model');
 		$this->load->model('member_model');
+		$this->load->model('product_model');
 		
 		if ($this->session->userdata('is_login') == FALSE) { redirect($this->config->item('link_admin_login')); }
     }
@@ -21,13 +22,13 @@ class Comment extends CI_Controller {
         $data['action'] = $this->input->post('action');
         $data['grid'] = $this->input->post('grid');
 
-        $get = $this->seller_model->info(array('id_seller' => $data['id']));
+        $get = $this->comment_model->info(array('id_comment' => $data['id']));
 
         if ($get->num_rows() > 0)
         {
             if ($this->input->post('delete') == TRUE)
             {
-                $query = $this->seller_model->delete($data['id']);
+                $query = $this->comment_model->delete($data['id']);
 
                 if ($query > 0)
                 {
@@ -60,8 +61,8 @@ class Comment extends CI_Controller {
         $i = $offset * 1 + 1;
         $order = 'created_date';
         $sort = 'desc';
-		$id_product = $this->input->get('id_product');
-		echo $id_product;die();
+		$id_product = $this->input->post('id_product');
+		
         $query = $this->comment_model->lists(array('limit' => $pageSize, 'offset' => $offset, 'order' => $order, 'sort' => $sort, 'id_product' => $id_product));
         $jsonData = array('total' => $query->num_rows(), 'results' => array());
 
@@ -88,6 +89,13 @@ class Comment extends CI_Controller {
     function comment_lists()
 	{
 		$data = array();
+		
+		$query = $this->product_model->info(array('id_product' => $this->input->get('id_product')));
+		
+		if ($query->num_rows() > 0)
+		{
+			$data['product'] = $query->row();
+		}
 		
 		$data['type'] = $this->input->get('type');
 		$data['msg'] = $this->input->get('msg');

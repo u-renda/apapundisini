@@ -26,7 +26,6 @@
 											<a href="<?php echo base_url('produk').'/'.$row->slug; ?>"><?php echo ucwords($row->name); ?></a>
 										</li>
 										<?php } ?>
-										
 									</ul>
 								</li>
 								<li class="w-700 pt-xs ml-sm mr-sm">
@@ -47,6 +46,9 @@
 									<ul class="dropdown-menu">
 										<li>
 											<a href="<?php echo $this->config->item('link_cart'); ?>"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;&nbsp;Keranjang Belanja</a>
+										</li>
+										<li>
+											<a href="<?php echo $this->config->item('link_profil'); ?>"><i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;Profil</a>
 										</li>
 										<li>
 											<a href="<?php echo $this->config->item('link_logout'); ?>"><i class="fa fa-power-off"></i>&nbsp;&nbsp;&nbsp;Keluar</a>

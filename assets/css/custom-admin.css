@@ -4,3 +4,19 @@
 .mr-35 {
 	margin-right: 35px;
 }
+
+.invoice .invoice-items #cell-id {
+    width: 15%;
+}
+
+.invoice .invoice-items #cell-item {
+    width: 40%;
+}
+
+.invoice .invoice-items #cell-qty {
+    width: 15%;
+}
+
+.invoice .bill-data .value {
+    width: 170px;
+}

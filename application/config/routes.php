@@ -66,6 +66,7 @@ $route['admin/comment_get'] = 'admin/comment/comment_get';
 $route['admin/logout'] = 'admin/login/logout';
 $route['admin/order'] = 'admin/order/order_lists';
 $route['admin/order_delete'] = 'admin/order/order_delete';
+$route['admin/order_detail'] = 'admin/order/order_detail';
 $route['admin/order_get'] = 'admin/order/order_get';
 $route['admin/order_update'] = 'admin/order/order_update';
 $route['admin/produk'] = 'admin/produk/produk_lists';

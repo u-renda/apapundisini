@@ -44,6 +44,10 @@ class Cart_checkout_model extends CI_Model {
     function lists($param)
     {
         $where = array();
+        if (isset($param['status_not']) == TRUE)
+        {
+            $where += array('status != ' => $param['status_not']);
+        }
         
         $this->db->select($this->table_id.', subtotal, shipment_cost, total, status, created_date,
 						  updated_date');

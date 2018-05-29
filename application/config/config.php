@@ -538,6 +538,12 @@ else
 
 /* MAIN */
 $config['title'] = 'Apapun Disini';
+$config['code_cart_status'] = array(
+	1 => 'Order',
+	2 => 'Menunggu Pembayaran',
+	3 => 'Sudah Dibayar',
+	4 => 'Selesai'
+);
 
 /* WEB */
 $config['link_cart'] = $config['base_url'].'cart';
@@ -548,6 +554,7 @@ $config['link_comment_create'] = $config['base_url'].'comment/comment_create';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'login/logout';
 $config['link_produk'] = $config['base_url'].'produk';
+$config['link_profil'] = $config['base_url'].'member/profil';
 $config['link_register'] = $config['base_url'].'login/register';
 $config['link_register_success'] = $config['base_url'].'login/register_success';
 
@@ -557,6 +564,7 @@ $config['link_admin_home'] = $config['base_url'].'admin/home'; // index (gak per
 $config['link_admin_login'] = $config['base_url'].'admin/login'; // index (gak perlu routes)
 $config['link_admin_logout'] = $config['base_url'].'admin/logout';
 $config['link_admin_order'] = $config['base_url'].'admin/order';
+$config['link_admin_order_detail'] = $config['base_url'].'admin/order_detail';
 $config['link_admin_produk'] = $config['base_url'].'admin/produk';
 $config['link_admin_produk_kategori'] = $config['base_url'].'admin/produk_kategori';
 $config['link_admin_produk_kategori_create'] = $config['base_url'].'admin/produk_kategori_create';

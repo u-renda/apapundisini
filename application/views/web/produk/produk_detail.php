@@ -106,7 +106,7 @@
 												</div>
 												<div class="row">
 													<div class="col-md-12">
-														<button type="submit" name="btnComment" id="btnComment" class="btn btn-primary btn-icon" value="Kasih Komentar">Kasih Komentar</button>
+														<button type="submit" name="btnComment" id="btnComment" class="btn btn-primary btn-icon" value="Kasih Komentar">Kirim Komentar</button>
 													</div>
 												</div>
 											</form>

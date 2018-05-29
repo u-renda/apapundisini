@@ -19,7 +19,7 @@
 		<div class="col-md-6 col-lg-12 col-xl-6">
 			<section class="panel">
 				<div class="panel-body">
-					<h4>Komentar - </h4>
+					<h4><?php echo 'Komentar - '.$product->name; ?></h4>
 					<?php
                     if ($msg == TRUE)
                     {
@@ -37,6 +37,7 @@
                         }
                     }
                     ?>
+					<input type="hidden" name="id_product" id="id_product" value="<?php echo $product->id_product; ?>"></span>
 					<div id="multipleTable"></div>
 				</div>
 			</section>

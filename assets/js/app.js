@@ -475,7 +475,9 @@ $(function () {
                         url: "comment_get",
                         dataType: "json",
                         type: "POST",
-                        data: {}
+                        data: {
+							id_product : $('#id_product').val()
+						}
                     }
                 },
                 schema: {
@@ -799,36 +801,22 @@ $(function () {
                 width: 30
             },
             {
-                field: "Nama",
+                field: "Pemesan",
                 sortable: false,
                 width: 70
             },
             {
-                field: "Kategori",
-                sortable: false,
-                width: 100
-            },
-            {
-                field: "Harga",
-				title: "Harga (Rp)",
-                sortable: false,
-                width: 100
-            },
-            {
-                field: "Stok",
-                sortable: false,
-                width: 50
-            },
-            {
-                field: "Keterangan",
-                sortable: false,
-                width: 300
-            },
-            {
-                field: "Foto",
+                field: "KodePemesanan",
+                title: "Kode Pemesanan",
                 sortable: false,
                 width: 100,
-                template: "#= data.Foto #"
+                template: "#= data.KodePemesanan #"
+            },
+            {
+                field: "TotalPembelian",
+				title: "Total Pembelian",
+                sortable: false,
+                width: 100
             },
             {
                 field: "Aksi",
