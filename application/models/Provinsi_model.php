@@ -27,9 +27,9 @@ class Provinsi_model extends CI_Model {
     function info($param)
     {
         $where = array();
-        if (isset($param['id_admin']) == TRUE)
+        if (isset($param['id_provinsi']) == TRUE)
         {
-            $where += array($this->table_id => $param['id_admin']);
+            $where += array($this->table_id => $param['id_provinsi']);
         }
         
         $this->db->select($this->table_id.', name, price, created_date, updated_date');

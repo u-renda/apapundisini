@@ -142,7 +142,9 @@ class Cart extends MY_Controller {
 			$param2['updated_date'] = date('Y-m-d H:i:s');
 			$query3 = $this->member_address_model->update($query2->row()->id_member_address, $param2);
 			
-			$shipment_cost = $query2->row()->price;
+			$query7 = $this->provinsi_model->info(array('id_provinsi' => $this->input->post('id_provinsi')));
+			
+			$shipment_cost = $query7->row()->price;
 		}
 		else
 		{

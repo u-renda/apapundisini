@@ -826,4 +826,63 @@ $(function () {
             }]
         });
     }
+    
+    // Ongkir Lists
+    if (document.getElementById('ongkir_lists_page') != null) {
+        $("#multipleTable").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "ongkir_get",
+                        dataType: "json",
+                        type: "POST",
+                        data: {}
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "total"
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverSorting: true,
+                serverFiltering: true,
+                cache: false
+            },
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            pageable: {
+                buttonCount: 5,
+                input: true,
+                pageSizes: true,
+                refresh: true
+            },
+            selectable: "row",
+            resizable: true,
+            columns: [{
+                field: "No",
+                sortable: false,
+                width: 30
+            },
+            {
+                field: "Provinsi",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Harga",
+                title: "Harga (Rp)",
+                sortable: false,
+                width: 100
+            },
+            {
+                field: "Aksi",
+                sortable: false,
+                width: 50,
+                template: "#= data.Aksi #"
+            }]
+        });
+    }
 });

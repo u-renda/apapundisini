@@ -1,16 +1,6 @@
 			<footer id="footer">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-4">
-							<div class="contact-details">
-								<h4>Hubungi Kami</h4>
-								<ul class="contact">
-									<li><p><i class="fa fa-map-marker"></i> <strong>Alamat:</strong> <?php echo 'alamat'; ?></p></li>
-									<li><p><i class="fa fa-phone"></i> <strong>Telp:</strong> <?php echo 'telp'; ?></p></li>
-									<li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:<?php echo 'email'; ?>"><?php echo 'email'; ?></a></p></li>
-								</ul>
-							</div>
-						</div>
 						<div class="col-md-2">
 							<h4>Ikuti Kami</h4>
 							<ul class="social-icons">

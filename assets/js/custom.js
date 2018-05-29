@@ -120,7 +120,7 @@ $(function () {
 					},
 					success: function(data)
 					{
-						$('#btnCartShipment').html('');
+						//$('#btnCartShipment').html('');
 						var response = $.parseJSON(data);
 						$('#shipping').html(response.shipping);
 						$('#amount').html(response.total_order);

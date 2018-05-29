@@ -68,8 +68,8 @@
                                 </a>
                             </li>
                             <li class="list-child">
-                                <a href="<?php echo $this->config->item('link_admin_pengaturan'); ?>">
-                                     Pengaturan
+                                <a href="<?php echo $this->config->item('link_admin_ongkir'); ?>">
+                                     Ongkos Kirim
                                 </a>
                             </li>
 							<?php if ($this->session->userdata('role_name') == 'Administrator' || $this->session->userdata('role_name') == 'administrator') { ?>

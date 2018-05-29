@@ -58,7 +58,7 @@ class Beranda extends MY_Controller {
 					}
 					else
 					{
-						$photo_small = $explode[0].$explode[1].'_165x165.'.$explode[2];
+						$photo_small = $explode[0].'.'.$explode[1].'_165x165.'.$explode[2];
 					}
 					
 					$result[] = array(
