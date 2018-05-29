@@ -91,8 +91,8 @@ class Others extends CI_Controller {
         $pageSize = $this->input->post('pageSize') ? $this->input->post('pageSize') : 20;
         $offset = ($page - 1) * $pageSize;
         $i = $offset * 1 + 1;
-        $order = 'created_date';
-        $sort = 'desc';
+        $order = 'name';
+        $sort = 'asc';
 
         $query = $this->provinsi_model->lists(array('limit' => $pageSize, 'offset' => $offset, 'order' => $order, 'sort' => $sort));
         $jsonData = array('total' => $query->num_rows(), 'results' => array());

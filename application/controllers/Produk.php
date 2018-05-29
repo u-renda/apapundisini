@@ -113,7 +113,7 @@ class Produk extends MY_Controller {
 			$product_category = $query->row();
 			
 			$param = array();
-			$param['limit'] = 2;
+			$param['limit'] = 8;
 			$param['offset'] = $offset;
 			$param['order'] = 'created_date';
 			$param['sort'] = 'desc';
@@ -156,19 +156,6 @@ class Produk extends MY_Controller {
 				$config['base_url'] = $this->config->item('link_produk').'/'.$slug;
 				$config['total_rows'] = $query3;
 				$config['per_page'] = $param['limit'];
-				$config['page_query_string'] = TRUE;
-				$config['full_tag_open'] = '<div class="row"><div class="col-md-12"><ul class="pagination pull-right">';
-				$config['full_tag_close'] = '</ul></div></div>';
-				$config['prev_tag_open'] = '<li>';
-				$config['prev_tag_close'] = '</li>';
-				$config['prev_link'] = '<i class="fa fa-chevron-left"></i>';
-				$config['next_tag_open'] = '<li>';
-				$config['next_tag_close'] = '</li>';
-				$config['next_link'] = '<i class="fa fa-chevron-right"></i>';
-				$config['cur_tag_open'] = '<li class="active"><a href="#">';
-				$config['cur_tag_close'] = '</a></li>';
-				$config['num_tag_open'] = '<li>';
-				$config['num_tag_close'] = '</li>';
 				
 				$this->pagination->initialize($config);
 				
