@@ -98,8 +98,26 @@ if ( ! function_exists('check_image')) {
 							}
 							else
 							{
-								$msg = 'true';
-								return $msg;
+								// resize sekali lagi
+								if ($param['folder'] == 'product')
+								{
+									$config['width'] = 261;
+									$config['height'] = 261;
+									$config['new_image'] = $CI->config->item('upload_dir').$param['folder'].'/'.$param['name']."_261x261.".$param['imageFileType'];
+								}
+								
+								$CI->image_lib->initialize($config);
+			
+								if ( ! $CI->image_lib->resize())
+								{
+									$msg = $CI->image_lib->display_errors();
+									return $msg;
+								}
+								else
+								{
+									$msg = 'true';
+									return $msg;
+								}
 							}
                         }
                         else

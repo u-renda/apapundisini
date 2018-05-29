@@ -113,8 +113,8 @@ class Produk extends MY_Controller {
 			$product_category = $query->row();
 			
 			$param = array();
-			$param['limit'] = 4;
-			$param['offset'] = 0;
+			$param['limit'] = 2;
+			$param['offset'] = $offset;
 			$param['order'] = 'created_date';
 			$param['sort'] = 'desc';
 			$param['id_product_category'] = $product_category->id_product_category;
@@ -122,8 +122,30 @@ class Produk extends MY_Controller {
 			
 			if ($query2->num_rows() > 0)
 			{
-				$data['count'] = count($query->result()) + $offset;
+				$data['count'] = count($query2->result()) + $offset;
 				$data['offset'] = $offset + 1;
+				
+				$product = array();
+				foreach ($query2->result() as $row)
+				{
+					$explode = explode('.',$row->photo);
+					
+					if (is_bool(LOCALHOST) || LOCALHOST == 'localhost')
+					{
+						$photo_small = $explode[0].'_261x261.'.$explode[1];
+					}
+					else
+					{
+						$photo_small = $explode[0].'.'.$explode[1].'_261x261.'.$explode[2];
+					}
+					
+					$temp = array();
+					$temp['photo'] = $photo_small;
+					$temp['slug'] = $row->slug;
+					$temp['name'] = $row->name;
+					$temp['price'] = $row->price;
+					$product[] = $temp;
+				}
 				
 				// Total
 				$query3 = $this->product_model->lists_count(array('id_product_category' => $product_category->id_product_category));
@@ -134,11 +156,24 @@ class Produk extends MY_Controller {
 				$config['base_url'] = $this->config->item('link_produk').'/'.$slug;
 				$config['total_rows'] = $query3;
 				$config['per_page'] = $param['limit'];
+				$config['page_query_string'] = TRUE;
+				$config['full_tag_open'] = '<div class="row"><div class="col-md-12"><ul class="pagination pull-right">';
+				$config['full_tag_close'] = '</ul></div></div>';
+				$config['prev_tag_open'] = '<li>';
+				$config['prev_tag_close'] = '</li>';
+				$config['prev_link'] = '<i class="fa fa-chevron-left"></i>';
+				$config['next_tag_open'] = '<li>';
+				$config['next_tag_close'] = '</li>';
+				$config['next_link'] = '<i class="fa fa-chevron-right"></i>';
+				$config['cur_tag_open'] = '<li class="active"><a href="#">';
+				$config['cur_tag_close'] = '</a></li>';
+				$config['num_tag_open'] = '<li>';
+				$config['num_tag_close'] = '</li>';
 				
 				$this->pagination->initialize($config);
 				
 				$data['total'] = $query3;
-				$data['product'] = $query2->result();
+				$data['product'] = $product;
 				$data['product_category'] = $product_category;
 				$data['view_content'] = 'web/produk/produk_kategori_lists';
 				$this->display_view('web/templates/frame', $data);
