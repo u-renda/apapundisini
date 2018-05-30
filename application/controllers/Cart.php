@@ -252,7 +252,7 @@ class Cart extends MY_Controller {
 		{
 			$data['provinsi_lists'] = $query4->result();
 		}
-		//print_r($cart_checkout);die();
+		
 		$data['cart_checkout'] = $cart_checkout;
 		$data['member_address'] = $member_address;
 		$data['subtotal'] = $subtotal;

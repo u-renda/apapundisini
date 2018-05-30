@@ -575,5 +575,6 @@ $config['link_admin_produk_create'] = $config['base_url'].'admin/produk_create';
 $config['link_admin_produk_update'] = $config['base_url'].'admin/produk_update';
 $config['link_admin_seller'] = $config['base_url'].'admin/seller';
 $config['link_admin_seller_create'] = $config['base_url'].'admin/seller_create';
+$config['link_admin_seller_update'] = $config['base_url'].'admin/seller_update';
 $config['link_admin_slider'] = $config['base_url'].'admin/slider';
 $config['link_admin_slider_create'] = $config['base_url'].'admin/slider_create';

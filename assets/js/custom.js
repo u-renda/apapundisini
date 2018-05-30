@@ -103,6 +103,11 @@ $(function () {
 	
 	// Cart shipment
     if (document.getElementById('cart_page') != null) {
+		var subtotal = parseInt($('#subtotal').attr('value'));
+		var shipping = parseInt($('#shipping').attr('value'));
+		var grandTotal = addCommas(subtotal + shipping);
+		var amount = $('#amount').html('Rp ' + grandTotal);
+		
 		$("#frmCalculateShipping").validate({
 			rules: {
 				address: "required",
@@ -160,6 +165,18 @@ $(function () {
         });
     }
 });
+
+function addCommas(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + '.' + '$2');
+    }
+    return x1 + x2;
+}
 
 // Notifications - Config
 (function($) {

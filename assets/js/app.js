@@ -126,9 +126,9 @@ $(function () {
                 width: 150
             },
             {
-                field: "Tagline",
+                field: "Username",
                 sortable: false,
-                width: 200
+                width: 150
             },
             {
                 field: "Logo",

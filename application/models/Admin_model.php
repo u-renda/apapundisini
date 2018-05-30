@@ -39,8 +39,13 @@ class Admin_model extends CI_Model {
         {
             $where += array('password' => $param['password']);
         }
+        if (isset($param['id_seller']) == TRUE)
+        {
+            $where += array('id_seller' => $param['id_seller']);
+        }
         
-        $this->db->select($this->table_id.', name, email, username, password, created_date, updated_date');
+        $this->db->select($this->table_id.', id_seller, name, username, password, created_date,
+						  updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -51,12 +56,19 @@ class Admin_model extends CI_Model {
     {
         $where = array();
         
-        $this->db->select($this->table_id.', name, email, username, password, created_date, updated_date');
+        $this->db->select($this->table_id.', id_seller, name, username, password, created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);
         $this->db->limit($param['limit'], $param['offset']);
         $query = $this->db->get();
+        return $query;
+    }
+    
+    function update($id, $param)
+    {
+        $this->db->where($this->table_id, $id);
+        $query = $this->db->update($this->table, $param);
         return $query;
     }
 }

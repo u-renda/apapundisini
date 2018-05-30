@@ -32,7 +32,21 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Logo:</label>
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Username:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="username" class="form-control" value="<?php echo set_value('username'); ?>">
+                                <?php echo form_error('username'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Password:</label>
+                            <div class="col-sm-10">
+                                <input type="password" name="password" class="form-control" value="<?php echo set_value('password'); ?>">
+                                <?php echo form_error('password'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Logo:</label>
                             <div class="col-sm-10">
                                 <div class="fileupload fileupload-new" data-provides="fileupload">
                                     <div class="input-append">
@@ -50,13 +64,6 @@
                                 </div>
 								<span class="help-block">* Ukuran file max 2MB</span>
                                 <?php echo form_error('seller_url'); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Tagline:</label>
-                            <div class="col-sm-10">
-                                <textarea rows="5" name="tagline" class="form-control"><?php echo set_value('tagline'); ?></textarea>
-                                <?php echo form_error('tagline'); ?>
                             </div>
                         </div>
                     </div>

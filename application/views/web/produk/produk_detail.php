@@ -161,7 +161,6 @@
 						</div>
 						<div class="post-info">
 							<strong><?php echo $product->seller_name; ?></strong>
-							<div class="post-meta"><?php echo $product->seller_tagline; ?></div>
 						</div>
 					</li>
 				</ul>

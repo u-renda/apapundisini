@@ -87,6 +87,7 @@ $route['admin/seller'] = 'admin/seller/seller_lists';
 $route['admin/seller_create'] = 'admin/seller/seller_create';
 $route['admin/seller_delete'] = 'admin/seller/seller_delete';
 $route['admin/seller_get'] = 'admin/seller/seller_get';
+$route['admin/seller_update'] = 'admin/seller/seller_update';
 $route['admin/slider'] = 'admin/slider/slider_lists';
 $route['admin/slider_create'] = 'admin/slider/slider_create';
 $route['admin/slider_delete'] = 'admin/slider/slider_delete';

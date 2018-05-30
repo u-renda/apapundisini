@@ -41,7 +41,7 @@ class Product_model extends CI_Model {
 						  price, photo, stock, description, '.$this->table.'.created_date,
 						  '.$this->table.'.updated_date, product_category.name AS product_category_name,
 						  product_category.slug AS product_category_slug, seller.name AS seller_name,
-						  seller.logo AS seller_logo, seller.tagline AS seller_tagline');
+						  seller.logo AS seller_logo');
         $this->db->from($this->table);
         $this->db->join('product_category', $this->table.'.id_product_category = product_category.id_product_category');
         $this->db->join('seller', $this->table.'.id_seller = seller.id_seller');
