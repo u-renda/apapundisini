@@ -119,6 +119,7 @@ class Order extends CI_Controller {
 		$cart_checkout['shipment_cost'] = 'Rp '.number_format($query7->row()->shipment_cost,0,',','.');
 		$cart_checkout['total'] = 'Rp '.number_format($query7->row()->total,0,',','.');
 		$cart_checkout['status'] = $code_cart_status[$query7->row()->status];
+		$cart_checkout['status_raw'] = $query7->row()->status;
 		
 		// Cart lists
 		$param2 = array();

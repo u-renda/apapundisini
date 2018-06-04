@@ -129,19 +129,17 @@
 									<table class="cart-totals">
 										<tbody>
 											<tr class="cart-subtotal">
-												<th>
-													<strong>Keranjang Belanja - Subtotal</strong>
-												</th>
+												<th>Keranjang Belanja - Subtotal</th>
 												<td>
-													<strong><span class="amount"><?php echo 'Rp '.number_format($subtotal,0,',','.'); ?></span></strong>
+													<span class="amount" id="subtotal" value="<?php echo $subtotal; ?>">
+														<?php echo 'Rp '.number_format($subtotal,0,',','.'); ?>
+													</span>
 												</td>
 											</tr>
 											<tr class="shipping">
-												<th>
-													Pengiriman
-												</th>
+												<th>Pengiriman</th>
 												<td>
-													<span id="shipping">
+													<span id="shipping" value="<?php echo $member_address['price']; ?>">
 														<?php
 														if (count($member_address) > 0) {
 															echo 'Rp '.number_format($member_address['price'],0,',','.');
@@ -152,9 +150,7 @@
 												</td>
 											</tr>
 											<tr class="total">
-												<th>
-													<strong>Total Order</strong>
-												</th>
+												<th>Total Order</th>
 												<td>
 													<strong>
 														<span class="amount" id="amount">
@@ -182,7 +178,9 @@
 						<div class="actions-continue">
 							
 							<form action="<?php echo $this->config->item('link_cart_order'); ?>" method="post">
+								<input type="hidden" name="shipment_cost" value="<?php echo $member_address['price']; ?>">
 								<input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>">
+								<input type="hidden" name="total" value="<?php echo $subtotal + $member_address['price']; ?>">
 								<?php if (count($cart_checkout) > 0) { ?>
 								<input type="hidden" name="id_cart_checkout" value="<?php echo $cart_checkout['id_cart_checkout']; ?>">
 								<?php }
@@ -190,7 +188,6 @@
 								<input type="submit" class="btn pull-right btn-primary btn-lg" name="submit" value="Proses Order" id="btnOrder" />
 								<?php } else { ?>
 								<input type="submit" disabled="disabled" class="btn pull-right btn-primary btn-lg" name="submit" value="Proses Order" id="btnOrder" />
-								<!--<button class="btn pull-right btn-primary btn-lg" disabled="disabled" id="btnOrder">Proses Order</button>-->
 								<?php } ?>
 							</form>
 						</div>

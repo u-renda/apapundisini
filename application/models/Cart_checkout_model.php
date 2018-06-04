@@ -33,8 +33,8 @@ class Cart_checkout_model extends CI_Model {
             $where += array($this->table_id => $param['id_cart_checkout']);
         }
         
-        $this->db->select($this->table_id.', subtotal, shipment_cost, total, status, created_date,
-						  updated_date');
+        $this->db->select($this->table_id.', id_member, subtotal, shipment_cost, total, status,
+						  created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $query = $this->db->get();
@@ -48,9 +48,13 @@ class Cart_checkout_model extends CI_Model {
         {
             $where += array('status != ' => $param['status_not']);
         }
+        if (isset($param['id_member']) == TRUE)
+        {
+            $where += array('id_member' => $param['id_member']);
+        }
         
-        $this->db->select($this->table_id.', subtotal, shipment_cost, total, status, created_date,
-						  updated_date');
+        $this->db->select($this->table_id.', id_member, subtotal, shipment_cost, total, status,
+						  created_date, updated_date');
         $this->db->from($this->table);
         $this->db->where($where);
         $this->db->order_by($param['order'], $param['sort']);

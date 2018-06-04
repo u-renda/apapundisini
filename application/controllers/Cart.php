@@ -49,6 +49,7 @@ class Cart extends MY_Controller {
 			{
 				// create id_cart_checkout
 				$param2 = array();
+				$param2['id_member'] = $this->session->userdata('id_member');
 				$param2['subtotal'] = 0;
 				$param2['shipment_cost'] = 0;
 				$param2['total'] = 0;
@@ -268,6 +269,8 @@ class Cart extends MY_Controller {
 		
 		$param = array();
 		$param['subtotal'] = $this->input->post('subtotal');
+		$param['shipment_cost'] = $this->input->post('shipment_cost');
+		$param['total'] = $this->input->post('total');
 		$param['status'] = 2;
 		$query = $this->cart_checkout_model->update($id_cart_checkout, $param);
 		

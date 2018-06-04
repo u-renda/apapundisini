@@ -551,6 +551,7 @@ $config['link_cart_create'] = $config['base_url'].'cart/cart_create';
 $config['link_cart_order'] = $config['base_url'].'cart/order';
 $config['link_cart_shipment'] = $config['base_url'].'cart/cart_shipment';
 $config['link_comment_create'] = $config['base_url'].'comment/comment_create';
+$config['link_konfirmasi'] = $config['base_url'].'konfirmasi';
 $config['link_login'] = $config['base_url'].'login';
 $config['link_logout'] = $config['base_url'].'login/logout';
 $config['link_produk'] = $config['base_url'].'produk';

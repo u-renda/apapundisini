@@ -36,8 +36,17 @@ class Produk extends CI_Controller {
 		}
 		else
 		{
-			$this->form_validation->set_message('check_media', '%s tidak boleh kosong');
-			return FALSE;
+			$self = $this->input->post('selfphoto');
+			if ($self == TRUE)
+			{
+				$this->processMedia = $self;
+				return TRUE;
+			}
+			else
+			{
+				$this->form_validation->set_message('check_media', '%s tidak boleh kosong');
+				return FALSE;
+			}
 		}
 	}
 	
@@ -396,27 +405,22 @@ class Produk extends CI_Controller {
 					$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 					$this->form_validation->set_message('required', '%s harus diisi');
 					$this->form_validation->set_message('numeric', '%s harus berisi angka');
-					$this->form_validation->set_rules('id_product_type_detail', 'tipe produk', 'required');
+					$this->form_validation->set_rules('id_product_category', 'kategori produk', 'required');
 					$this->form_validation->set_rules('name', 'nama', 'required');
+					$this->form_validation->set_rules('price', 'harga', 'required|numeric');
+					$this->form_validation->set_rules('stock', 'stok', 'required|numeric');
 					$this->form_validation->set_rules('description', 'keterangan', 'required');
+					$this->form_validation->set_rules('produk_url', 'foto', 'callback_check_media');
 					
-					if ($this->input->post('change_media') == TRUE)
-					{
-						$this->form_validation->set_rules('produk_url', 'foto', 'callback_check_media');
-					}
-	
 					if ($this->form_validation->run() == TRUE)
 					{
 						$param = array();
-						$param['id_product_type_detail'] = $this->input->post('id_product_type_detail');
+						$param['id_product_category'] = $this->input->post('id_product_category');
 						$param['name'] = $this->input->post('name');
+						$param['price'] = $this->input->post('price');
+						$param['stock'] = $this->input->post('stock');
 						$param['description'] = $this->input->post('description');
-						
-						if ($this->input->post('change_media') == TRUE)
-						{
-							$param['url'] = $this->processMedia;
-						}
-						
+						$param['photo'] = $this->processMedia;
 						$param['updated_date'] = date('Y-m-d H:i:s');
 						$query = $this->product_model->update($data['id'], $param);
 	
@@ -430,26 +434,12 @@ class Produk extends CI_Controller {
 						}
 					}
 				}
-		
-				$query3 = $this->product_type_detail_model->lists(array('limit' => 20, 'offset' => 0, 'order' => 'number', 'sort' => 'asc'));
 				
+				$query3 = $this->product_category_model->lists(array('limit' => 20, 'offset' => 0, 'order' => 'name', 'sort' => 'asc'));
+		
 				if ($query3->num_rows() > 0)
 				{
-					$data['product_type_detail_lists'] = $query3->result();
-				}
-		
-				$query4 = $this->product_type_model->lists(array('limit' => 20, 'offset' => 0, 'order' => 'number', 'sort' => 'asc'));
-				
-				if ($query4->num_rows() > 0)
-				{
-					$data['product_type_lists'] = $query4->result();
-				}
-		
-				$query5 = $this->product_type_detail_model->info(array('id_product_type_detail' => $get->row()->id_product_type_detail));
-				
-				if ($query5->num_rows() > 0)
-				{
-					$data['product_type_detail'] = $query5->row();
+					$data['product_category_lists'] = $query3->result();
 				}
 				
 				$data['result'] = $get->row();
@@ -461,6 +451,6 @@ class Produk extends CI_Controller {
             $data['view_content'] = 'admin/data_not_found';
         }
 		
-        $this->display_view('admin/templates/frame', $data);
+        $this->load->view('admin/templates/frame', $data);
     }
 }

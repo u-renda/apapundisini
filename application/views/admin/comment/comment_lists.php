@@ -39,6 +39,11 @@
                     ?>
 					<input type="hidden" name="id_product" id="id_product" value="<?php echo $product->id_product; ?>"></span>
 					<div id="multipleTable"></div>
+					<div class="row">
+						<div class="col-md-12 mt-sm">
+							<a type="button" class="btn btn-default" href="<?php echo $this->config->item('link_admin_produk'); ?>">Kembali</a>
+						</div>
+					</div>
 				</div>
 			</section>
 		</div>

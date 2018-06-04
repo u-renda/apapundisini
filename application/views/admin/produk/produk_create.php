@@ -35,10 +35,6 @@
                                 </select>
                                 <?php echo form_error('id_product_category'); ?>
                             </div>
-							<div class="col-sm-10 col-sm-offset-2 mt-sm">
-								<div id="id_product_type_detail"></div>
-								<?php echo form_error('id_product_type_detail'); ?>
-							</div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><span class="text-danger">*</span> Nama:</label>

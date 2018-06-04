@@ -23,33 +23,39 @@
                     <h2 class="panel-title">Ubah Data</h2>
                 </header>
                 <form action="<?php echo $this->config->item('link_admin_produk_update').'?id='.$id; ?>" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered">
-                    <div class="panel-body">
+                    <input type="hidden" name="selfphoto" value="<?php echo $result->photo; ?>">
+					<div class="panel-body">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Tipe Produk:</label>
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Kategori Produk:</label>
                             <div class="col-sm-10">
-                                <select class="form-control" name="id_product_type">
+                                <select class="form-control" name="id_product_category" id="id_product_category">
                                     <option value="">-- Pilih Salah Satu --</option>
-                                    <?php foreach ($product_type_lists as $key => $val) { ?>
-										<option value="<?php echo $val->id_product_type; ?>" <?php if ($product_type_detail->id_product_type == $val->id_product_type) { echo 'selected="selected"'; } echo set_select('id_product_type', $val->id_product_type); ?>><?php echo $val->name; ?></option>
-                                    <?php } ?>
-                                </select>
-                                <?php echo form_error('id_product_type'); ?>
-                            </div>
-							<div class="col-sm-10 col-sm-offset-2 mt-sm">
-								<select class="form-control" name="id_product_type_detail" id="id_product_type_detail">
-									<option value="">-- Pilih Produk Detail --</option>
-									<?php foreach ($product_type_detail_lists as $key => $val) { ?>
-										<option value="<?php echo $val->id_product_type_detail; ?>" <?php if ($result->id_product_type_detail == $val->id_product_type_detail) { echo 'selected="selected"'; } echo set_select('id_product_type_detail', $val->id_product_type_detail); ?>><?php echo ucwords($val->name); ?></option>
+									<?php foreach ($product_category_lists as $key => $val) { ?>
+										<option value="<?php echo $val->id_product_category; ?>" <?php if ($result->id_product_category == $val->id_product_category) { echo 'selected="selected"'; } echo set_select('shirt_size', $val->id_product_category); ?>><?php echo $val->name; ?></option>
 									<?php } ?>
-								</select>
-								<?php echo form_error('id_product_type_detail'); ?>
-							</div>
+                                </select>
+                                <?php echo form_error('id_product_category'); ?>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><span class="text-danger">*</span> Nama:</label>
                             <div class="col-sm-10">
                                 <input type="text" name="name" class="form-control" value="<?php echo set_value('name', $result->name); ?>">
                                 <?php echo form_error('name'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Harga:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="price" class="form-control" value="<?php echo set_value('price', $result->price); ?>">
+                                <?php echo form_error('price'); ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><span class="text-danger">*</span> Stok:</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="stock" class="form-control" value="<?php echo set_value('stock', $result->stock); ?>">
+                                <?php echo form_error('stock'); ?>
                             </div>
                         </div>
                         <div class="form-group">
@@ -62,31 +68,22 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Foto:</label>
                             <div class="col-sm-10">
-								<img src="<?php echo $result->url; ?>" alt="<?php echo $result->name; ?>" width="50%">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2">
-                                <div class="checkbox-custom checkbox-default">
-									<input type="checkbox" id="checkboxMedia" name="change_media" value="yes">
-									<label for="checkboxMedia">Ubah foto</label>
-								</div>
-								<div class="image_option">
-									<div class="fileupload fileupload-new" data-provides="fileupload">
-										<div class="input-append">
-											<div class="uneditable-input">
-												<span class="fileupload-preview"></span>
-											</div>
-											<span class="btn btn-default btn-file">
-												<span class="fileupload-exists">Ubah</span>
-												<span class="fileupload-new">Pilih file</span>
-												<input type="file" name="produk_url" />
-											</span>
-											<a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Hapus</a>
-										</div>
-									</div>
-									<span class="help-block">* Ukuran file max 2MB</span>
-								</div>
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="input-append">
+                                        <div class="uneditable-input">
+                                            <i class="fa fa-file fileupload-exists"></i>
+                                            <span class="fileupload-preview"></span>
+                                        </div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileupload-exists">Ubah</span>
+                                            <span class="fileupload-new">Pilih file</span>
+                                            <input type="file" name="produk_url" />
+                                        </span>
+                                        <a href="#" class="btn btn-default fileupload-exists" data-dismiss="fileupload">Hapus</a>
+                                    </div>
+                                </div>
+								<span class="help-block">* Ukuran file max 2MB</span>
+                                <?php echo form_error('produk_url'); ?>
                             </div>
                         </div>
                     </div>

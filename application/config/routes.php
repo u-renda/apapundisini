@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 /* MAIN */
 $route['index'] = 'beranda/index';
+$route['konfirmasi'] = 'member/konfirmasi';
 $route['produk/(:any)'] = 'produk/index/$1';
 $route['produk/(:any)/(:any)'] = 'produk/index/$1';
 
