@@ -43,6 +43,10 @@ class Seller_model extends CI_Model {
     function lists($param)
     {
         $where = array();
+        if (isset($param['logo_not']) == TRUE)
+        {
+            $where += array('logo != ' => $param['logo_not']);
+        }
         
         $this->db->select($this->table_id.', name, logo, created_date, updated_date');
         $this->db->from($this->table);

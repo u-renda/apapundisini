@@ -88,6 +88,7 @@ class Beranda extends MY_Controller {
 		$param3['offset'] = 0;
 		$param3['order'] = 'rand()';
 		$param3['sort'] = 'desc';
+		$param3['logo_not'] = '';
 		$query3 = $this->seller_model->lists($param3);
 		
 		$seller = array();

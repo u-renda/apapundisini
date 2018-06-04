@@ -54,11 +54,11 @@ class Produk extends MY_Controller {
 					
 					if (is_bool(LOCALHOST) || LOCALHOST == 'localhost')
 					{
-						$photo_small = $explode[0].'_165x165.'.$explode[1];
+						$photo_small = $explode[0].'_261x261.'.$explode[1];
 					}
 					else
 					{
-						$photo_small = $explode[0].'.'.$explode[1].'_165x165.'.$explode[2];
+						$photo_small = $explode[0].'.'.$explode[1].'_261x261.'.$explode[2];
 					}
 					
 					$temp = array();
