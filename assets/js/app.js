@@ -819,6 +819,11 @@ $(function () {
                 width: 100
             },
             {
+                field: "Status",
+                sortable: false,
+                width: 100
+            },
+            {
                 field: "Aksi",
                 sortable: false,
                 width: 50,

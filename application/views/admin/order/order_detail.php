@@ -110,8 +110,8 @@
 
 			<div class="text-right mr-lg">
 				<a href="<?php echo $this->config->item('link_admin_order'); ?>" class="btn btn-default">Kembali</a>
-				<?php if ($cart_checkout['status_raw'] != 2) { ?>
-				<a href="pages-invoice-print.html" target="_blank" class="btn btn-primary ml-sm"><i class="fa fa-print"></i> Print</a>
+				<?php if ($cart_checkout['status_raw'] == 3) { ?>
+				<a href="<?php echo $this->config->item('link_admin_order_konfirmasi').'?id_cart_checkout='.$id_cart_checkout; ?>" class="btn btn-primary ml-sm">Konfirmasi Pembayaran</a>
 				<?php } ?>
 			</div>
 		</div>

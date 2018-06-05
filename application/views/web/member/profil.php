@@ -77,10 +77,24 @@
 													Jumlah: <?php echo $row2['product_quantity']; ?>
 												</div>
 											</div>
+											<?php }
+											if ($row['status_raw'] == 2) { ?>
+											<hr class="tall">
+											<div class="row">
+												<div class="col-md-12">
+													<p><?php echo 'Silahkan transfer sebesar Rp '.$row['total'].' <br>Ke rekening BCA 123123123 <br>Atas nama John Doe'; ?></p>
+													<p><?php echo 'Jangan lupa untuk mencantumkan no pemesanan, yaitu #'.$row['id_cart_checkout']; ?></p>
+												</div>
+											</div>
 											<?php } ?>
+											<hr class="tall">
 											<div class="row pull-right">
 												<div class="col-md-12">
+													<?php if ($row['status_raw'] == 2) { ?>
 													<a href="<?php echo $this->config->item('link_konfirmasi').'?id_checkout='.$row['id_cart_checkout']; ?>" class="btn btn-primary ml-sm">Konfirmasi Pembayaran</a>
+													<?php } else if ($row['status_raw'] == 1) { ?>
+													<a href="<?php echo $this->config->item('link_cart'); ?>" class="btn btn-primary ml-sm">Keranjang Belanja</a>
+													<?php } ?>
 												</div>
 											</div>
 										</div>

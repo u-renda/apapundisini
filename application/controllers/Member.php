@@ -14,7 +14,26 @@ class Member extends MY_Controller {
 	
 	function konfirmasi()
 	{
+		$data = array();
+		$id_cart_checkout = $this->input->get('id_checkout');
 		
+		$query = $this->cart_checkout_model->update($id_cart_checkout, array('status' => 3));
+		
+		$param = array();
+		$param['limit'] = 20;
+		$param['offset'] = 0;
+		$param['order'] = 'created_date';
+		$param['sort'] = 'asc';
+		$param['id_cart_checkout'] = $id_cart_checkout;
+		$query2 = $this->cart_model->lists($param);
+		
+		foreach ($query2->result() as $row)
+		{
+			$query3 = $this->cart_model->update($row->id_cart, array('status' => 3));
+		}
+		
+		$data['view_content'] = 'web/member/konfirmasi';
+		$this->display_view('web/templates/frame', $data);
 	}
 	
 	function profil()
@@ -78,6 +97,7 @@ class Member extends MY_Controller {
 				$temp['address'] = $row->id_cart_checkout;
 				$temp['created_date'] = date('d M Y', strtotime($row->created_date));
 				$temp['status'] = $code_cart_status[$row->status];
+				$temp['status_raw'] = $row->status;
 				$temp['total'] = 'Rp ' . number_format($row->total, 0, ',', '.');
 				$temp['subtotal'] = 'Rp ' . number_format($row->subtotal, 0, ',', '.');
 				$temp['shipment_cost'] = 'Rp ' . number_format($row->shipment_cost, 0, ',', '.');

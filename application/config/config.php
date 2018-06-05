@@ -568,6 +568,7 @@ $config['link_admin_ongkir'] = $config['base_url'].'admin/ongkir';
 $config['link_admin_ongkir_create'] = $config['base_url'].'admin/ongkir_create';
 $config['link_admin_order'] = $config['base_url'].'admin/order';
 $config['link_admin_order_detail'] = $config['base_url'].'admin/order_detail';
+$config['link_admin_order_konfirmasi'] = $config['base_url'].'admin/order_konfirmasi';
 $config['link_admin_produk'] = $config['base_url'].'admin/produk';
 $config['link_admin_produk_kategori'] = $config['base_url'].'admin/produk_kategori';
 $config['link_admin_produk_kategori_create'] = $config['base_url'].'admin/produk_kategori_create';

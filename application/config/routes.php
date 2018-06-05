@@ -73,6 +73,7 @@ $route['admin/order'] = 'admin/order/order_lists';
 $route['admin/order_delete'] = 'admin/order/order_delete';
 $route['admin/order_detail'] = 'admin/order/order_detail';
 $route['admin/order_get'] = 'admin/order/order_get';
+$route['admin/order_konfirmasi'] = 'admin/order/order_konfirmasi';
 $route['admin/order_update'] = 'admin/order/order_update';
 $route['admin/produk'] = 'admin/produk/produk_lists';
 $route['admin/produk_create'] = 'admin/produk/produk_create';

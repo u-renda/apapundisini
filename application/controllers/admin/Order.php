@@ -172,7 +172,7 @@ class Order extends CI_Controller {
         $pageSize = $this->input->post('pageSize') ? $this->input->post('pageSize') : 20;
         $offset = ($page - 1) * $pageSize;
         $i = $offset * 1 + 1;
-        $order = 'updated_date';
+        $order = 'status';
         $sort = 'desc';
 		$status_not = 1;
 
@@ -183,15 +183,17 @@ class Order extends CI_Controller {
         {
             $query2 = $this->cart_model->info(array('id_cart_checkout' => $row->id_cart_checkout));
 			
-			$action = '<a title="Edit" href="'.$this->config->item('link_admin_order_update').'?id='.$row->id_cart_checkout.'"><i class="fa fa-pencil h4"></i></a>&nbsp;
-                        <a title="Delete" id="'.$row->id_cart_checkout.'" class="delete '.$row->id_cart_checkout.'-delete" href="#"><i class="fa fa-times h4 text-danger"></i></a>';
+			$action = '<a title="Delete" id="'.$row->id_cart_checkout.'" class="delete '.$row->id_cart_checkout.'-delete" href="#"><i class="fa fa-times h4 text-danger"></i></a>';
 			$cart_detail = '<a title="Detail Pesanan" href="'.$this->config->item('link_admin_order_detail').'?id_cart_checkout='.$row->id_cart_checkout.'">#'.$row->id_cart_checkout.'</a>';
+			
+			$code_cart_status = $this->config->item('code_cart_status');
 			
 			$entry = array(
 				'No' => $i,
 				'Pemesan' => $query2->row()->member_name,
 				'KodePemesanan' => $cart_detail,
 				'TotalPembelian' => number_format($row->total,0,',','.'),
+				'Status' => $code_cart_status[$row->status],
 				'Aksi' => $action
 			);
 	
@@ -200,6 +202,28 @@ class Order extends CI_Controller {
         }
 
         echo json_encode($jsonData);
+	}
+	
+	function order_konfirmasi()
+	{
+		$id_cart_checkout = $this->input->get('id_cart_checkout');
+		
+		$query = $this->cart_checkout_model->update($id_cart_checkout, array('status' => 4));
+		
+		$param = array();
+		$param['limit'] = 20;
+		$param['offset'] = 0;
+		$param['order'] = 'created_date';
+		$param['sort'] = 'asc';
+		$param['id_cart_checkout'] = $id_cart_checkout;
+		$query2 = $this->cart_model->lists($param);
+		
+		foreach ($query2->result() as $row)
+		{
+			$query3 = $this->cart_model->update($row->id_cart, array('status' => 4));
+		}
+		
+		redirect($this->config->item('link_admin_order'));
 	}
 
     function order_lists()
