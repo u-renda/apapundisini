@@ -82,7 +82,7 @@
 											<hr class="tall">
 											<div class="row">
 												<div class="col-md-12">
-													<p><?php echo 'Silahkan transfer sebesar Rp '.$row['total'].' <br>Ke rekening BCA 123123123 <br>Atas nama John Doe'; ?></p>
+													<?php echo '<p>Silahkan transfer sebesar Rp '.$row['total'].' <br>Ke rekening '.$this->config->item('no_rekening').'</p>'; ?>
 													<p><?php echo 'Jangan lupa untuk mencantumkan no pemesanan, yaitu #'.$row['id_cart_checkout']; ?></p>
 												</div>
 											</div>

@@ -319,6 +319,38 @@ $(function () {
         });
     }
 	
+    // Member Lists
+    if (document.getElementById('member_lists_page') != null) {
+        // Delete
+		$('body').delegate(".delete", "click", function() {
+            var id = $(this).attr("id");
+            var action = "member_delete";
+            var grid = "multipleTable";
+            var dataString = 'id='+ id +'&action='+ action +'&grid='+ grid;
+            $.ajax(
+            {
+                type: "POST",
+                url: adminPathname + action,
+                data: dataString,
+                cache: false,
+                beforeSend: function()
+                {
+                    $('.'+id+'-delete').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function(data)
+                {
+                    $('.'+id+'-delete').html('<i class="fa fa-times h4 text-danger"></i>');
+                    $('.modal-dialog').removeClass('modal-lg');
+                    $('.modal-dialog').addClass('modal-sm');
+                    $('.modal-title').text('Delete?');
+                    $('.modal-body').html(data);
+                    $('#myModal').modal('show');
+                }
+            });
+            return false;
+        });
+    }
+	
     // Order Lists
     if (document.getElementById('order_lists_page') != null) {
         // Delete

@@ -144,6 +144,74 @@ $(function () {
             }]
         });
     }
+	
+    // Member Lists
+    if (document.getElementById('member_lists_page') != null) {
+        $("#multipleTable").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "member_get",
+                        dataType: "json",
+                        type: "POST",
+                        data: {}
+                    }
+                },
+                schema: {
+                    data: "results",
+                    total: "total"
+                },
+                pageSize: 20,
+                serverPaging: true,
+                serverSorting: true,
+                serverFiltering: true,
+                cache: false
+            },
+            sortable: {
+                mode: "single",
+                allowUnsort: true
+            },
+            pageable: {
+                buttonCount: 5,
+                input: true,
+                pageSizes: true,
+                refresh: true
+            },
+            selectable: "row",
+            resizable: true,
+            columns: [{
+                field: "No",
+                sortable: false,
+                width: 30
+            },
+            {
+                field: "Nama",
+                sortable: false,
+                width: 150
+            },
+            {
+                field: "Email",
+                sortable: false,
+                width: 150
+            },
+            {
+                field: "Telp",
+                sortable: false,
+                width: 70
+            },
+            {
+                field: "Alamat",
+                sortable: false,
+                width: 70
+            },
+            {
+                field: "Aksi",
+                sortable: false,
+                width: 70,
+                template: "#= data.Aksi #"
+            }]
+        });
+    }
     
     // Keunggulan Lists
     if (document.getElementById('keunggulan_lists_page') != null) {

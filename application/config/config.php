@@ -538,6 +538,7 @@ else
 
 /* MAIN */
 $config['title'] = 'Apapun Disini';
+$config['no_rekening'] = 'BCA 8870157771 <br>Atas nama EKO PUTRA BOEDIMAN';
 $config['code_cart_status'] = array(
 	1 => 'Order',
 	2 => 'Menunggu Pembayaran',
@@ -564,6 +565,8 @@ $config['link_admin_comment'] = $config['base_url'].'admin/comment';
 $config['link_admin_home'] = $config['base_url'].'admin/home'; // index (gak perlu routes)
 $config['link_admin_login'] = $config['base_url'].'admin/login'; // index (gak perlu routes)
 $config['link_admin_logout'] = $config['base_url'].'admin/logout';
+$config['link_admin_member'] = $config['base_url'].'admin/member';
+$config['link_admin_member_update'] = $config['base_url'].'admin/member_update';
 $config['link_admin_ongkir'] = $config['base_url'].'admin/ongkir';
 $config['link_admin_ongkir_create'] = $config['base_url'].'admin/ongkir_create';
 $config['link_admin_order'] = $config['base_url'].'admin/order';

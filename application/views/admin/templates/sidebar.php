@@ -32,6 +32,12 @@
                             <span>Penjual</span>
                         </a>
                     </li>
+                    <li class="list-main">
+                        <a href="<?php echo $this->config->item('link_admin_member'); ?>">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            <span>Pembeli</span>
+                        </a>
+                    </li>
                     <li class="nav-parent list-parent" id="produk">
                         <a>
                             <i class="fa fa-building" aria-hidden="true"></i>
