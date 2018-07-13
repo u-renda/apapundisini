@@ -139,14 +139,16 @@
 											<tr class="shipping">
 												<th>Pengiriman</th>
 												<td>
-													<span id="shipping" value="<?php echo $member_address['price']; ?>">
-														<?php
-														if (count($member_address) > 0) {
-															echo 'Rp '.number_format($member_address['price'],0,',','.');
-														} else {
-															echo 'Rp 0';
-														} ?>
-													</span>
+													<?php
+													if (count($member_address) > 0) {
+														echo '<span id="shipping" value="'.$member_address['price'].'">';
+														echo 'Rp '.number_format($member_address['price'],0,',','.');
+														echo '</span>';
+													} else {
+														echo '<span id="shipping" value="0">';
+														echo 'Rp 0';
+														echo '</span>';
+													} ?>
 												</td>
 											</tr>
 											<tr class="total">
@@ -178,9 +180,9 @@
 						<div class="actions-continue">
 							
 							<form action="<?php echo $this->config->item('link_cart_order'); ?>" method="post">
-								<input type="hidden" name="shipment_cost" value="<?php echo $member_address['price']; ?>">
+								<input type="hidden" name="shipment_cost" id="shipment_cost" value="<?php if (count($member_address) > 0) { echo $member_address['price']; } else { echo '0'; } ?>">
 								<input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>">
-								<input type="hidden" name="total" value="<?php echo $subtotal + $member_address['price']; ?>">
+								<input type="hidden" name="total" id="total" value="<?php if (count($member_address) > 0) { echo $subtotal + $member_address['price']; } else { echo $subtotal; } ?>">
 								<?php if (count($cart_checkout) > 0) { ?>
 								<input type="hidden" name="id_cart_checkout" value="<?php echo $cart_checkout['id_cart_checkout']; ?>">
 								<?php }

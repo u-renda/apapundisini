@@ -177,6 +177,8 @@ class Cart extends MY_Controller {
 		$response['text'] = 'Data pengiriman berhasil di update.';
 		$response['shipping'] = 'Rp '.number_format($shipment_cost,0,',','.');
 		$response['total_order'] = 'Rp '.number_format($param4['total'],0,',','.');
+		$response['shipping2'] = $shipment_cost;
+		$response['total_order2'] = $param4['total'];
 		
 		echo json_encode($response);
 		exit();

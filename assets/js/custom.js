@@ -125,10 +125,11 @@ $(function () {
 					},
 					success: function(data)
 					{
-						//$('#btnCartShipment').html('');
 						var response = $.parseJSON(data);
 						$('#shipping').html(response.shipping);
 						$('#amount').html(response.total_order);
+						$('#shipment_cost').val(response.shipping2);
+						$('#total').val(response.total_order2);
 						$('#btnOrder').removeAttr('disabled');
 						
 						new PNotify({
